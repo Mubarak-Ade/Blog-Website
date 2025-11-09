@@ -1,0 +1,164 @@
+import {
+    Eye,
+    EyeClosed,
+    EyeIcon,
+    EyeOff,
+    Lock,
+    Mail,
+    Notebook,
+    NotebookText,
+    User,
+} from "lucide-react";
+import React, { useState } from "react";
+import { useAuthProvider } from "../state/store";
+import { Link, Navigate, useNavigate } from "react-router";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput,
+} from "@/components/ui/input-group";
+import { FieldGroup, Field, FieldError, FieldDescription } from "@/components/ui/field";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardTitle,
+    CardDescription,
+    CardHeader,
+    CardContent,
+    CardFooter,
+} from "@/components/ui/card";
+
+export const Login = () => {
+    const API = useAuthProvider((state) => state.API);
+    const setUser = useAuthProvider((state) => state.setUser);
+    const setToken = useAuthProvider((state) => state.setToken);
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const navigate = useNavigate();
+
+    const schema = z.object({
+        email: z.string().email(),
+        password: z.string().min(8),
+    });
+
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors },
+    } = useForm({ resolver: zodResolver(schema) });
+
+    const onSubmit = async (data) => {
+        try {
+            const res = await API.post("/auth/login", data);
+            setUser(res.data.user);
+            setToken(res.data.token);
+            navigate("/");
+        } catch (err) {
+            setError("apiError", {
+                type: "manual",
+                message: err.response?.data?.message || "Login failed",
+            });
+        }
+    };
+
+    return (
+        <div className="w-full block p-10 h-screen">
+            <div className="w-full max-w-5xl m-auto h-150">
+                <Card className="p-0 overflow-hidden h-full">
+                    <CardContent className="grid grid-cols-2 p-0 h-full">
+                        <form
+                            onSubmit={handleSubmit(onSubmit)}
+                            className="h-full bg-white p-8"
+                        >
+                            <CardHeader>
+                                <div className="flex flex-col items-center mb-10">
+                                    <NotebookText
+                                        size={50}
+                                        className="bg-custom-400 rounded-xl text-custom-100 p-3"
+                                    />
+                                    <CardTitle className="text-3xl font-bold mb-2">
+                                        Login to Your Account
+                                    </CardTitle>
+                                    <CardDescription>
+                                        Welcome back! Please enter your details.
+                                    </CardDescription>
+                                </div>
+                            </CardHeader>
+                            <FieldGroup>
+                                <Field>
+                                    <Label htmlFor="">Email</Label>
+                                    <InputGroup>
+                                        <InputGroupInput
+                                            type="text"
+                                            {...register("email")}
+                                        />
+                                        <InputGroupAddon>
+                                            <Mail />
+                                        </InputGroupAddon>
+                                    </InputGroup>
+                                    {errors.email && (
+                                        <FieldError>
+                                            {errors.email.message}
+                                        </FieldError>
+                                    )}
+                                </Field>
+                                <Field>
+                                    <Label htmlFor="">Password</Label>
+                                    <InputGroup>
+                                        <InputGroupAddon
+                                            onClick={() =>
+                                                setPasswordVisible(
+                                                    !passwordVisible
+                                                )
+                                            }
+                                        >
+                                            {passwordVisible ? (
+                                                <EyeOff />
+                                            ) : (
+                                                <Eye />
+                                            )}
+                                        </InputGroupAddon>
+                                        <InputGroupInput
+                                            type={
+                                                passwordVisible
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            {...register("password")}
+                                        />
+                                        <InputGroupAddon align="inline-end">
+                                            <Lock />
+                                        </InputGroupAddon>
+                                    </InputGroup>
+                                    {errors.password && (
+                                        <FieldError>
+                                            {errors.password.message}
+                                        </FieldError>
+                                    )}
+                                </Field>
+                                <Field>
+                                    <Button type="submit" className="bg-custom-400 hover:bg-custom-400/90 cursor-pointer">Submit</Button>
+                                    {errors.apiError && (
+                                        <FieldError>
+                                            {errors.apiError.message}
+                                        </FieldError>
+                                    )}
+                                </Field>
+                                <FieldDescription classNmae="text-center">
+                                    Dont Have an account  <Link className="hover:underline ml-1" to="/register">
+                                        Register
+                                    </Link>
+                                </FieldDescription>
+                            </FieldGroup>
+                        </form>
+                        <div className="flex-1 bg-linear-to-bl from-custom-400 to-custom-200"></div>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+};
