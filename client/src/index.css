@@ -6,7 +6,7 @@
 @source "../.flowbite-react/class-list.json";
 
 @theme {
-    
+
     --color-custom-100: #FDF0D5;
     --color-custom-200: #669BBC;
     --color-custom-300: #C1121F;
@@ -22,7 +22,7 @@ body {
     box-sizing: border-box;
     display: block;
     height: 100%;
-    background-color: var(--color-custom-100);
+    background-color: var(--color-white);
 }
 
 @theme inline {
