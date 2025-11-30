@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router";
 import Navbar from "../../components/Navbar";
-import { useDashboardStore } from "../../state/dashboardStore";
+import { useDashboardStore } from "../../store/dashboardStore";
+import { Footer } from "@/components/layout/Home/Footer";
 
 export const MainLayout = () => {
     return (
@@ -10,6 +11,7 @@ export const MainLayout = () => {
             <main className="pt-18">
                 <Outlet />
             </main>
+            <Footer />
         </>
     );
 };

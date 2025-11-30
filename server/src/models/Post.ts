@@ -19,10 +19,14 @@ const postSchema = new Schema({
         required: true
     },
     tags: {
-        type: String
+        type: [String]
     },
     category: {
         type: String,
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 }, {timestamps: true})
 

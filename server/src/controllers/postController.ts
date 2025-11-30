@@ -2,9 +2,41 @@ import { type RequestHandler } from "express";
 import Post from "../models/Post.ts";
 import createHttpError from "http-errors"
 import Comment from "../models/Comment.ts";
+import User from "../models/User.ts";
 
 
-export const getPosts:RequestHandler = async (req, res, next) => {
+export const getFilterPost: RequestHandler = async (req, res, next) => {
+    try {
+        const { page = 1, limit = 5, category, author, search, tags } = req.query
+
+        const query: any = {}
+
+        if (category) query.category = {$regex: category, $options: "i"}
+        if(tags) query.tags = {$in: tags, $options: "i"}
+        const authorName = [{firstname: {$regex: author, $options: "i"}}, {lastname: {$regex: author, $options: "i"}}]
+        if (author) {
+            const users = await User.find({$or: authorName}).select("_id")
+            const ids = users.map(u => u._id)
+            query.author = {$in: ids}
+        }
+
+        if (search) {
+            query.$or = [
+                { title: { $regex: search, $options: "i" } },
+                { content: { $regex: search, $options: "i" } }
+            ]
+        }
+
+        const skip = (Number(page) - 1) * Number(limit)
+        const [data, total] = await Promise.all([Post.find(query).populate("author", "firstname lastname email profilePic").skip(skip).limit(Number(limit)), Post.countDocuments(query)])
+
+        res.json({ total, page: Number(page), pages: Math.ceil(total / Number(limit)), data })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const getPosts: RequestHandler = async (req, res, next) => {
     try {
         const post = await Post.find({})
             .sort({
@@ -17,9 +49,9 @@ export const getPosts:RequestHandler = async (req, res, next) => {
     }
 }
 
-export const getUserPosts:RequestHandler = async (req, res,next) => {
+export const getUserPosts: RequestHandler = async (req, res, next) => {
     try {
-        const post = await Post.find({author: req.user?.id})
+        const post = await Post.find({ author: req.user?.id })
             .sort({
                 createdAt: -1,
             })
@@ -29,7 +61,7 @@ export const getUserPosts:RequestHandler = async (req, res,next) => {
     }
 }
 
-export const getPost:RequestHandler = async (req, res, next) => {
+export const getPost: RequestHandler = async (req, res, next) => {
     try {
         const post = await Post.findById(req.params.id).populate("author", "firstname lastname email profilePic");
         if (!post) {
@@ -45,15 +77,16 @@ export const getPost:RequestHandler = async (req, res, next) => {
     }
 }
 
-export const createPost:RequestHandler = async (req, res) => {
-    let { title, content, tags, category, image} = req.body;
+export const createPost: RequestHandler = async (req, res) => {
+    const { title, content, tags, category } = req.body;
+    let image;
 
     if (req.file) {
         image = `uploads/post/${req.file.filename}`
     }
 
     if (!title || !content || !tags || !category) {
-        res.status(400).json({ message: "Fields are missing" });
+        throw createHttpError(400, "Fields are missing")
     }
 
     const post = new Post({
@@ -69,7 +102,7 @@ export const createPost:RequestHandler = async (req, res) => {
     res.json({ post: { title, content, tags, category } });
 }
 
-export const updatePost:RequestHandler = async (req, res, next) => {
+export const updatePost: RequestHandler = async (req, res, next) => {
     try {
         let { title, content, category, tags, image } = req.body;
         const post = await Post.findById(req.params.id);
@@ -87,21 +120,25 @@ export const updatePost:RequestHandler = async (req, res, next) => {
         post.title = title ?? post.title;
         post.content = content ?? post.content;
         post.category = category ?? post.category;
-        post.tags = tags ?? post.tags
+        if(tags) {
+
+            post.tags = Array.isArray(tags) ? tags : tags.split(",").map(t => t.trim())
+        }
         await post.save();
         res.json({
             message: "updated successfully",
             title: post.title,
             content: post.content,
             category: post.category,
-            image: post.image
+            image: post.image,
+            posts: post.tags,
         });
     } catch (error) {
         next(error)
     }
 }
 
-export const deletePost:RequestHandler = async (req, res, next) => {
+export const deletePost: RequestHandler = async (req, res, next) => {
     try {
         const post = await Post.findById(req.params.id);
         if (!post) {

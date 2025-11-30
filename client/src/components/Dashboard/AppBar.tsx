@@ -1,7 +1,7 @@
 import { RiArrowDownSLine, RiArrowDropDownLine } from "react-icons/ri"; 
 import Profile from "../../assets/profile.png";
 import { BellIcon, MenuIcon, Search, User } from "lucide-react";
-import { useDashboardStore } from "../../state/dashboardStore";
+import { useDashboardStore } from "../../store/dashboardStore";
 import { useEffect } from "react";
 import { formatImage } from "@/util/imageFormat";
 import { useFetchUser } from "@/services/dashboard";

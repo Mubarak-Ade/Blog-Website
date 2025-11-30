@@ -1,5 +1,5 @@
 import { login, register } from "@/services/auth"
-import { useAuthProvider } from "@/state/store";
+import { useAuthProvider } from "@/store/store";
 import { useMutation } from "@tanstack/react-query"
 
 export const useLogin = () => {

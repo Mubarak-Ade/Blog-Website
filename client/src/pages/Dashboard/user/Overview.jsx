@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
-import { SideBar } from "../../../components/Dashboard/SideBar";
+import { BookCopyIcon, MessageCircleMore } from "lucide-react";
 import { PostCard } from "../../../components/Dashboard/PostCard";
-import { BookCopyIcon, Eye, Heart, MessageCircleMore, PenBox } from "lucide-react";
 import { RecentPostTable } from "../../../components/Dashboard/RecentPostTable";
-import { useDashboardStore } from "../../../state/dashboardStore";
 import { useUserPost } from '../../../services/dashboard';
 
 export const Overview = () => {

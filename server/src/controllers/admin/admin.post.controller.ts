@@ -30,3 +30,4 @@ export const deletePost:RequestHandler = async (req, res, next) => {
         next(error)
     }
 }
+

@@ -17,31 +17,29 @@ export const BlogCard = (post: Post) => {
 		title,
 		content,
 		category,
-		tags = "",
+		tags,
 		_id,
 		image,
 		author,
 		createdAt,
 	} = post;
 
-	const tagList: string[] = tags.split(",");
-
-	console.log(author);
+	// const tagList: string[] = tags.split(",");
 
 	return (
 		<Link to={`/post/${_id}`}>
-			<Card className="w-full p-0 shadow-2xl pb-4 border border-custom-400 h-full max-h-125 overflow-hidden text-custom-400">
+			<Card className="w-full relative p-0 shadow-2xl pb-4 border border-custom-400 overflow-hidden text-custom-400">
 				<CardHeader className="p-0 ">
 					<div className="h-50 w-full overflow-hidden rounded-t-md">
 						<img
 							src={formatImage(image)}
 							alt=""
-							className=""
+							className="object-cover h-full w-full"
 						/>
 					</div>
 					<div className="flex gap-1 flex-wrap h-8 overflow-hidden capitalize p-2">
-						{tagList ? (
-							tagList.map((tag, index: number) => {
+						{tags? (
+							tags.map((tag, index: number) => {
 								return (
 									<p
 										key={index}
@@ -60,9 +58,8 @@ export const BlogCard = (post: Post) => {
 					<CardTitle className="text-xl capitalize flex line-clamp-2">
 						<h2>{title}</h2>
 					</CardTitle>
-					<CardDescription className="capitalize text-base">
+					<CardDescription className="capitalize bg-white rounded-2xl absolute top-0 text-custom-400 px-4 py-2 text-xs m-2 left-0">
 						<p>{category}</p>
-						<span></span>
 					</CardDescription>
 				</CardContent>
 				<CardFooter className="block space-y-4 px-4">

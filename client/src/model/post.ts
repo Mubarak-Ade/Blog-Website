@@ -1,3 +1,5 @@
+import { Author } from "./user"
+
 export interface Post {
     _id: string,
     image?: any,
@@ -5,13 +7,13 @@ export interface Post {
     title: string
     content: string,
     category: string,
-    tags: string,
+    tags: [string],
     createdAt: string,
-    author: {
-        _id: string,
-        firstname: string,
-        lastname: string,
-        email: string,
-        profilePic?: string
-    }
+    author: Author
+}
+
+export interface Comment {
+    _id: string,
+    text: string,
+    user: Author
 }

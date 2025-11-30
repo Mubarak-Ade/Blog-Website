@@ -2,20 +2,14 @@ import { useFetchPosts } from "@/hooks/queries/usePost";
 import { formatImage } from "@/util/imageFormat";
 import { BlogCard } from "./BlogCard";
 import { ClipLoader } from "react-spinners";
+import { Loader } from "./Loader";
 
 export const Hero = () => {
   const { data, isLoading, error } = useFetchPosts()
 
   // Handle loading state
   if (isLoading) {
-    return <ClipLoader
-        color={"#001100"}
-        loading={isLoading}
-        // cssOverride={override}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />;
+    return <Loader loading={isLoading} />
   }
 
   // Handle error state

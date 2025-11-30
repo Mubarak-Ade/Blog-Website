@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router";
-import { useAuthProvider } from "../state/store";
+import { useAuthProvider } from "../store/store";
 
 const Navbar = () => {
     // const user = useStore((state) => state.user);
@@ -43,7 +43,7 @@ const Navbar = () => {
                 <Link to="/" className="hover:underline">
                     Home
                 </Link>
-                <Link className="hover:underline">Category</Link>
+                <Link to="/posts" className="hover:underline">Posts</Link>
                 <Link className="hover:underline">About</Link>
                 <Link className="hover:underline">Contact</Link>
             </ul>

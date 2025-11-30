@@ -1,5 +1,5 @@
 import { editUserInfo, fetchUserPost, getUserInfo } from "@/hooks/queries/useDashboard"
-import { useAuthProvider } from "@/state/store"
+import { useAuthProvider } from "@/store/store"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getPosts } from "./post"
 

@@ -14,8 +14,9 @@ const upload = multer({storage})
 
 // ----------------get all post ---------------
 
-router.get("/", postConroller.getPosts);
 
+router.get("/all", postConroller.getFilterPost);
+router.get("/", postConroller.getPosts);
 router.get("/me", auth, postConroller.getUserPosts);
 
 // ----------------get single post ---------------
@@ -24,11 +25,11 @@ router.get("/:id", postConroller.getPost);
 
 // ----------------create a post ---------------
 
-router.post("/", auth, upload.single("post"), postConroller.createPost);
+router.post("/", auth, upload.single("image"), postConroller.createPost);
 
 // ----------------update/edit a post ---------------
 
-router.put("/:id", auth, upload.single("post"), postConroller.updatePost);
+router.put("/:id", auth, upload.single("image"), postConroller.updatePost);
 
 // ----------------delete post ---------------
 

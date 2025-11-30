@@ -6,6 +6,14 @@ export interface User {
     profile: string,
 }
 
+export interface Author {
+    _id: string,
+    firstname: string,
+    lastname: string,
+    email: string,
+    profilePic?: string
+}
+
 export interface UserProfile {
     id?: string,
     firstname: string,

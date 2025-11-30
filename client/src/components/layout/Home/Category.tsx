@@ -22,7 +22,7 @@ export const Category = () => {
 	const tags = Array.from(
 		new Set(
 			data?.flatMap((post: Partial<Post>) =>
-				post.tags?.split(",").map((str) => str.trim())
+				post.tags
 			)
 		)
 	);
@@ -48,7 +48,6 @@ export const Category = () => {
 
 	// categories.flatMap(c => console.log(c.split(",")))
 
-	console.log(tags);
 
 	return (
 		<div className="p-10 flex gap-10 items-center justify-center">
@@ -69,7 +68,7 @@ export const Category = () => {
             <div className="border-l p-4">
 				<h1 className="text-3xl font-bold">Tags</h1>
                 <ul className="flex flex-wrap gap-2 mt-10">
-                    {tags.map((tag) => (
+                    {tags.slice(0,10).map((tag) => (
                         <li
                             key={tag}
                             className="px-4 overflow-hidden text-white cursor-pointer py-2 text-[10px] rounded-full text-center bg-custom-200"

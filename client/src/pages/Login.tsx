@@ -10,7 +10,7 @@ import {
     User,
 } from "lucide-react";
 import React, { useState } from "react";
-import { useAuthProvider } from "../state/store";
+import { useAuthProvider } from "../store/store";
 import { Link, Navigate, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

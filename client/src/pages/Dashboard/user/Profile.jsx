@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { ProfileBanner } from "../../../components/Profile/ProfileBanner";
 import { ProfileInfo } from "../../../components/Profile/ProfileInfo";
-import { ProfileForm } from "../../../components/Profile/ProfileForm";
-import { useDashboardStore } from "../../../state/dashboardStore";
 import { useFetchUser } from "../../../services/dashboard";
 
 export const Profile = () => {

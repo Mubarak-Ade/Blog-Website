@@ -30,15 +30,15 @@ import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useDashboardStore } from "../../../state/dashboardStore";
+import { useDashboardStore } from "../../../store/dashboardStore";
 import { useState } from "react";
 import { formatImage } from "@/util/imageFormat";
 import { useCreatePost, useEditPost } from "@/hooks/queries/usePost";
 import { Post } from "@/model/post";
-import { BlogEditor } from "@/components/BlogEditor";
+import { BlogEditor } from "@/components/Editor/BlogEditor";
+import { toast } from "sonner";
 
 export const Create = () => {
-	// const { createPost, error, loading } = usePostStore();
 	const createPost = useCreatePost();
 
 	const edit = useDashboardStore((s) => s.edit);
@@ -49,16 +49,14 @@ export const Create = () => {
 		edit?.image && formatImage(edit?.image)
 	);
 
-	console.log(preview);
-
 	const navigate = useNavigate();
+	const [imageFile, setImageFile] = useState<File | null>(null);
 
 	const schema = z.object({
-		image: z.any().optional(),
 		title: z.string().min(3, "Post title is required"),
 		content: z.string().min(20),
 		category: z.string().min(3, "Category field is empty"),
-		tags: z.string().min(3, "Add at least 1 tags"),
+		tags: z.any(),
 	});
 	const {
 		register,
@@ -78,20 +76,25 @@ export const Create = () => {
 		},
 	});
 
-	console.log(edit);
-
 	const content = watch("content");
 
-	const onSubmit = (data: Post) => {
-		edit ? editPost.mutate({id: edit._id, data}) : createPost.mutate(data);
-		navigate("/");
+	const onSubmit = (data: Omit<Post, "image">) => {
+		const postData = { ...data, image: imageFile};
+		console.log(postData);
+		if (edit) {
+			editPost.mutate({ id: edit._id, data: postData });
+		} else {
+			createPost.mutate(postData);
+		}
+		toast.success(`Post ${edit ? "edited" : "created"} successfully`);
+		navigate(-1);
 		reset();
-		// setError("root", { type: "manual", message: error });
 	};
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
 		if (file) {
+			setImageFile(file);
 			setPreview(URL.createObjectURL(file));
 		}
 	};
@@ -119,10 +122,9 @@ export const Create = () => {
 							></div>
 							<Field className="mb-5">
 								<Input
-									{...register("image")}
+									onChange={handleFileChange}
 									type="file"
 									accept="image/*"
-									onChange={handleChange}
 								/>
 							</Field>
 						</FieldGroup>

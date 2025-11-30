@@ -2,7 +2,7 @@ import { Post } from "@/model/post.js";
 import { create } from "zustand";
 
 interface DashboardState {
-    edit: null | Post,
+    edit: null | omit<Post, "image">,
     setEdit: (post: Post) => void
 }
 

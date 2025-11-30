@@ -1,3 +1,5 @@
+import { Loader } from "@/components/Loader";
+import { Comment } from "@/components/viewpost/Comment";
 import { useFetchSinglePost, usePostComment } from "@/hooks/queries/usePost";
 import { formatImage } from "@/util/imageFormat";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,7 +9,7 @@ import { useParams } from "react-router";
 import { z } from "zod";
 // import TextareaAutosize from "react-textarea-autosize";
 
-export const PostPage = () => {
+export const ViewPost = () => {
   const schema = z.object({
     comment: z
       .string()
@@ -25,25 +27,24 @@ export const PostPage = () => {
 
   const { id } = useParams();
 
-  console.log(id);
-
   const update = usePostComment();
   const { data, isLoading, error } = useFetchSinglePost(id!);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader loading={isLoading} />;
   if (error) return <p>Error: {error}</p>;
 
-  const tags = data?.post?.tags?.split(",");
+  // const tags:[] = data?.post?.tags?.split(",");
 
   const onSubmit = (data) => {
     try {
-      console.log(id);
 
       update.mutate({
         id: id,
         data: data.comment,
-      });
-      console.log(data);
+      }, {onSuccess () {
+          console.log("Post comment");
+          
+      },});
 
       resetField("comment");
     } catch (error) {
@@ -52,7 +53,7 @@ export const PostPage = () => {
         message: errors || error || "Comment can not be post",
       });
     }
-  };
+  };  
 
   // const profilePic = `http://localhost:4000${user?.profilePic}`
 
@@ -63,8 +64,8 @@ export const PostPage = () => {
           <h1 className="text-4xl text-center font-bold font-actor">
             {data?.post?.title}
           </h1>
-          <div className="my-5">
-            <img src={`http://localhost:4000/${data?.post?.image}`} alt="" />
+          <div className="my-5 max-w-4xl w-full h-100 border">
+            <img src={`http://localhost:4000/${data?.post?.image}`} className="size-full object-cover" alt="" />
           </div>
           <h6 className="capitalize ">
             category:{" "}
@@ -74,8 +75,8 @@ export const PostPage = () => {
         <div className="mt-5">
           <div dangerouslySetInnerHTML={{__html: data.post.content}} className="p-4" />
           <div className="flex gap-1 capitalize mt-5">
-            {tags ? (
-              tags.map((tag, index) => {
+            {data.post.tags ? (
+              data.post.tags.map((tag, index) => {
                 return (
                   <p
                     key={index}
@@ -103,36 +104,11 @@ export const PostPage = () => {
               Submit
             </button>
             {errors.comment && (
-              <p className="text-red-500 text-xl">{errors.comment.text}</p>
+              <p className="text-red-500 text-xl">{errors.comment.message}</p>
             )}
           </form>
         </div>
-        <div className="mt-10">
-          {/* Comments will go here */}
-          {data?.comment && data?.comment?.length > 0 ? (
-            data?.comment?.map((comment) => (
-              <div
-                key={comment._id}
-                className="border rounded-lg border-custom-500 py-4 m-2 p-2 w-full"
-              >
-                <div className="grid grid-cols-[50px_100px] items-center">
-                  <img
-                    src={formatImage(comment?.user?.profilePic)}
-                    alt=""
-                    className="size-10 border border-custom-500 rounded-full row-span-2 mr-4"
-                  />
-                  <h4 className="text-custom-500 font-bold">
-                    {comment?.user?.firstname} {comment?.user?.lastname}
-                  </h4>
-                  <h6 className="text-custom-300">{comment?.user?.email}</h6>
-                </div>
-                <p className="font-alive mt-5 ml-10">{comment.text}</p>
-              </div>
-            ))
-          ) : (
-            <p className="mt-4">No comments yet.</p>
-          )}
-        </div>
+        <Comment comment={data?.comment} />
       </div>
     </div>
   )
