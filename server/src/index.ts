@@ -1,4 +1,3 @@
-import '../@types/express';
 import app from "./app";
 import env from "./env";
 import {connectDB} from "./db/connect_db"
