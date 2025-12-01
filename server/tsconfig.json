@@ -47,7 +47,8 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-      "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": false 
   },
   "include": ["src/**/*"],
    "ts-node": {
