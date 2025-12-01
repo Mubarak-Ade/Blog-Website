@@ -122,7 +122,7 @@ export const updatePost: RequestHandler = async (req, res, next) => {
         post.category = category ?? post.category;
         if(tags) {
 
-            post.tags = Array.isArray(tags) ? tags : tags.split(",").map(t => t.trim())
+            post.tags = Array.isArray(tags) ? tags : tags.split(",").map((t:string) => t.trim())
         }
         await post.save();
         res.json({
