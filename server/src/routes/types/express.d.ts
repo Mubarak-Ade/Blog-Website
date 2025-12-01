@@ -1,4 +1,4 @@
-import { AuthUser } from '../src/types/AuthUser';
+import { AuthUser } from '../../types/AuthUser.js';
 declare module "express-serve-static-core" {
     interface Request {
         user?: AuthUser;

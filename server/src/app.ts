@@ -2,18 +2,18 @@ import "dotenv/config"
 import express, { type NextFunction, type Request, type Response } from "express";
 import {isHttpError} from "http-errors"
 import cors from "cors"
-import authRoutes from "./routes/auth"
-import blogRoutes from "./routes/post"
-import userRoutes from "./routes/user"
-import commentRoutes from "./routes/comment"
-import adminUserRoutes from "./routes/admin/admin.user.routes" 
-import adminPostRoutes from "./routes/admin/admin.post.routes" 
-import adminCommentRoutes from "./routes/admin/admin.comment.routes"
+import authRoutes from "./routes/auth.js"
+import blogRoutes from "./routes/post.js"
+import userRoutes from "./routes/user.js"
+import commentRoutes from "./routes/comment.js"
+import adminUserRoutes from "./routes/admin/admin.user.routes.js" 
+import adminPostRoutes from "./routes/admin/admin.post.routes.js" 
+import adminCommentRoutes from "./routes/admin/admin.comment.routes.js"
 import {fileURLToPath} from "url"
 import path from "path"
 import morgan from "morgan";
-import { isAdmin } from "./middleware/isAdmin";
-import auth from "./middleware/authHandler";
+import { isAdmin } from "./middleware/isAdmin.js";
+import auth from "./middleware/authHandler.js";
 
 const app = express();
 

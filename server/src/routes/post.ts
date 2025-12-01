@@ -1,8 +1,8 @@
 import express from "express";
-import auth from "../middleware/authHandler";
+import auth from "../middleware/authHandler.js";
 // import async from "../middleware/authHandler.js";
 import multer from 'multer'
-import * as postConroller from "../controllers/postController"
+import * as postConroller from "../controllers/postController.js"
 const router = express.Router();
 
 const storage = multer.diskStorage({

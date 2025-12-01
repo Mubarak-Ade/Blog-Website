@@ -1,6 +1,6 @@
 import express from 'express';
-import * as postController from '../../controllers/postController';
-import * as adminPostController from "../../controllers/admin/admin.post.controller"
+import * as postController from '../../controllers/postController.js';
+import * as adminPostController from "../../controllers/admin/admin.post.controller.js"
 
 const router = express.Router()
 

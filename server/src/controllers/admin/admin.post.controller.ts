@@ -1,7 +1,7 @@
 import type { RequestHandler } from "express"
-import Comment from "../../models/Comment"
+import Comment from "../../models/Comment.js"
 import createHttpError from "http-errors"
-import Post from "../../models/Post"
+import Post from "../../models/Post.js"
 
 export const getComments:RequestHandler = async  (req, res) => {
     const comment = await Comment.find({}).sort({createdAt: -1}).exec()

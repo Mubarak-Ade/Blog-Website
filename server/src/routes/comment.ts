@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router()
-import * as commentController from "../controllers/commentController"
-import auth from "../middleware/authHandler"
+import * as commentController from "../controllers/commentController.js"
+import auth from "../middleware/authHandler.js"
 
 router.post("/comment/:postId", auth, commentController.postComment);
 
