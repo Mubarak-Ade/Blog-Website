@@ -2,18 +2,18 @@ import "dotenv/config"
 import express, { type NextFunction, type Request, type Response } from "express";
 import {isHttpError} from "http-errors"
 import cors from "cors"
-import authRoutes from "./routes/auth.ts"
-import blogRoutes from "./routes/post.ts"
-import userRoutes from "./routes/user.ts"
-import commentRoutes from "./routes/comment.ts"
-import adminUserRoutes from "./routes/admin/admin.user.routes.ts" 
-import adminPostRoutes from "./routes/admin/admin.post.routes.ts" 
-import adminCommentRoutes from "./routes/admin/admin.comment.routes.ts"
+import authRoutes from "./routes/auth"
+import blogRoutes from "./routes/post"
+import userRoutes from "./routes/user"
+import commentRoutes from "./routes/comment"
+import adminUserRoutes from "./routes/admin/admin.user.routes" 
+import adminPostRoutes from "./routes/admin/admin.post.routes" 
+import adminCommentRoutes from "./routes/admin/admin.comment.routes"
 import {fileURLToPath} from "url"
 import path from "path"
 import morgan from "morgan";
-import { isAdmin } from "./middleware/isAdmin.ts";
-import auth from "./middleware/authHandler.ts";
+import { isAdmin } from "./middleware/isAdmin";
+import auth from "./middleware/authHandler";
 
 const app = express();
 
@@ -22,9 +22,8 @@ app.use(morgan("dev"))
 app.use(cors());
 app.use(express.json());
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-app.use("/uploads", express.static(path.join((__dirname, "uploads"))));
+const __dirname = path.resolve()
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/admin/user", auth, isAdmin, adminUserRoutes)
 

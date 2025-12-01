@@ -1,7 +1,7 @@
-import env from "../../env.ts"
+import env from "../env.js"
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import User from "../models/User.ts";
+import User from "../models/User";
 import { type RequestHandler } from "express";
 import createHttpError from 'http-errors';
 

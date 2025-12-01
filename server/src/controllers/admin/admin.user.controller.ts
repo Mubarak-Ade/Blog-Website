@@ -1,5 +1,5 @@
 import { type RequestHandler } from "express";
-import User from "../../models/User.ts";
+import User from "../../models/User";
 
 export const getUsers: RequestHandler = async (req, res, next) => {
     try {

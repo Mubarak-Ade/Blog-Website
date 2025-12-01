@@ -1,8 +1,8 @@
 import jwt, { type JwtPayload } from "jsonwebtoken";
-import env from "../../env.ts";
+import env from "../env.js";
 import { type RequestHandler } from "express";
 import createHttpError from 'http-errors';
-import { type AuthUser } from "../types/AuthUser.ts";
+import { type AuthUser } from "../types/AuthUser";
 const JWT_SECRET = env.JWT_SECRET;
 
 const authHandler:RequestHandler = async(req, res, next) => {

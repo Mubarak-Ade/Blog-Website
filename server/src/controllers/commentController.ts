@@ -1,6 +1,6 @@
 import { type RequestHandler } from "express";
-import Comment from "../models/Comment.ts";
-import Post from "../models/Post.ts";
+import Comment from "../models/Comment";
+import Post from "../models/Post";
 import createHttpError from "http-errors";
 
 interface CommentBody {

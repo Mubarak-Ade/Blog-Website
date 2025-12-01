@@ -1,8 +1,8 @@
 import express from "express";
-import User from "../models/User.ts";
+import User from "../models/User";
 const router = express.Router();
 import multer from "multer";
-import auth from "../middleware/authHandler.ts";
+import auth from "../middleware/authHandler";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, "uploads/profile/"),

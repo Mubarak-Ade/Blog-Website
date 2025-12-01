@@ -1,8 +1,8 @@
 import { type RequestHandler } from "express";
-import Post from "../models/Post.ts";
+import Post from "../models/Post";
 import createHttpError from "http-errors"
-import Comment from "../models/Comment.ts";
-import User from "../models/User.ts";
+import Comment from "../models/Comment";
+import User from "../models/User";
 
 
 export const getFilterPost: RequestHandler = async (req, res, next) => {

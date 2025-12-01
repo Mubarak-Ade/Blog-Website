@@ -1,6 +1,6 @@
 import express from 'express';
-import * as commentController from "../../controllers/admin/admin.comment.controller.ts"
-import authHandler from '../../middleware/authHandler.ts';
+import * as commentController from "../../controllers/admin/admin.comment.controller"
+import authHandler from '../../middleware/authHandler';
 
 const router = express.Router()
 
