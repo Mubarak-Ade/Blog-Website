@@ -25,7 +25,7 @@ export const Hero = () => {
       <div className="text-center max-w-3xl">
         <h1 className="text-6xl font-bold text-wrap text-custom-100">
           Discover Stories That  <br />
-          <span className="text-custom-400">Inspire & Educate</span>
+          <span className="text-custom-400">Inspire & Educates</span>
         </h1>
         <p className="text-xl mt-5 text-custom-100">
           Explore insightful articles on technology, design, and development
