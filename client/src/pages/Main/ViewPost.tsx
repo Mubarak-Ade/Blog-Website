@@ -80,7 +80,7 @@ export const ViewPost = () => {
                 return (
                   <p
                     key={index}
-                    className="overflow-hidden flex items-center justify-center bg-custom-500 text-xs text-white px-3 py-1.5 rounded-full"
+                    className="overflow-hidden flex items-center flex-wrap justify-center bg-custom-500 text-xs text-white rounded-full"
                   >
                     {tag}
                   </p>

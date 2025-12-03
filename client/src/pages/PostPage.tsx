@@ -55,13 +55,13 @@ export const PostPage = () => {
 				</h4>
 			</div>
 			<PostsHeader />
-			<div className="flex">
-				<div className="gap-5 p-5 max-w-4xl w-full">
+			<div className="flex lg:flex-row flex-col">
+				<div className="gap-5 lg:p-5 max-w-4xl w-full">
 					{posts.map((post: Post) => (
 						<PostCard {...post} key={post._id} />
 					))}
 				</div>
-				<aside className="w-full max-w-sm space-y-4">
+				<aside className="w-full md:max-w-3xl lg:max-w-xl space-y-4">
 					<Trendy posts={posts} />
 					<MostViewPost posts={posts} />
 					<PopularTags tags={tags} />

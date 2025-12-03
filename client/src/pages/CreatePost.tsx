@@ -66,13 +66,13 @@ export const CreatePost = () => {
     }
 
 	return (
-		<div className="min-h-screen w-full bg-custom-100 flex items-center justify-center p-10">
+		<div className="min-h-screen w-full bg-custom-100 flex items-center justify-center p-4">
 			<Link to="/">
-				<Button className="absolute top-0 hover:bg-custom-400 cursor-pointer bg-custom-300 text-custom-100 rounded-full right-0 m-4">
+				<Button variant={"link"} className="absolute top-0 hover:bg-custom-400 cursor-pointer text-custom-500 rounded-full right-0 m-2">
 					Go Home
 				</Button>
 			</Link>
-			<Card className="max-w-2xl w-full">
+			<Card className="max-w-2xl w-full mt-6">
 				<CardHeader>
 					<CardTitle className="text-xl text-center">
 						Create a Post
@@ -133,7 +133,7 @@ export const CreatePost = () => {
 									</FieldError>
 								)}
 							</Field>
-							<FieldGroup className="grid grid-cols-2">
+							<FieldGroup className="grid lg:grid-cols-2">
 								<Field>
 									<FieldLabel>Post Category</FieldLabel>
 									<Input

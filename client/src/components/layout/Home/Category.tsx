@@ -50,10 +50,10 @@ export const Category = () => {
 
 
 	return (
-		<div className="p-10 flex gap-10 items-center justify-center">
-			<div className="p-4">
-				<h1 className="text-3xl font-bold">Category</h1>
-				<ul className="flex mt-10">
+		<div className="flex lg:flex-row flex-col gap-10 items-center justify-center">
+			<div className="w-full p-4">
+				<h1 className="text-3xl font-bold text-center">Category</h1>
+				<ul className="flex flex-wrap justify-center mt-10">
 					{categoryList.map((category) => (
 						<li
 							key={category}
@@ -65,8 +65,8 @@ export const Category = () => {
 					))}
 				</ul>
 			</div>
-            <div className="border-l p-4">
-				<h1 className="text-3xl font-bold">Tags</h1>
+            <div className="lg:border-l p-6">
+				<h1 className="text-3xl text-center font-bold">Popular Tags</h1>
                 <ul className="flex flex-wrap gap-2 mt-10">
                     {tags.slice(0,10).map((tag) => (
                         <li

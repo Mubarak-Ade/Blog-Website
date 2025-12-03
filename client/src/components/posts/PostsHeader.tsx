@@ -43,7 +43,7 @@ export const PostsHeader = () => {
 	};
 
 	return (
-		<div className="mt-5 p-4 flex gap-4 w-full">
+		<div className="mt-5 p-4 flex flex-wrap gap-4 w-full">
 			<form onSubmit={handleSearchSubmit}>
 				<InputGroup className="max-w-xl w-full flex">
 					<InputGroupInput

@@ -33,7 +33,7 @@ export const BlogEditor = ({value, onChange} : Props) => {
         },
         editorProps: {
             attributes: {
-                class: "max-h-100 prose prose-invert overflow-auto outline-none p-2 pt-30"
+                class: "h-40 prose prose-invert overflow-auto outline-none p-2"
             }
         }
     })
@@ -45,8 +45,8 @@ export const BlogEditor = ({value, onChange} : Props) => {
     }, [editor, value]);
 	return (
 		<div className="border rounded-md overflow-hidden relative">
-            <EditorBar editor={editor} />
 			<EditorContent editor={editor}  />
+            <EditorBar editor={editor} />
             <style jsx global>{`
         .ProseMirror {
           min-height: 400px;

@@ -11,12 +11,14 @@ export const PostCard = (post: Post) => {
     
 	return (
 		<Link to={`/post/${_id}`}>
-			<div className="flex m-4 gap-4 max-h-50 h-full border border-slate-500 overflow-hidden shadow-2xl rounded-xl">
-				<img
-					src={formatImage(image)}
-					alt=""
-					className="max-w-50 min-w-50 max-h-50 min-h-50 object-cover overflow-hidden p-0 h-full w-full"
-				/>
+			<div className="flex md:flex-row flex-col m-4 gap-4 border border-slate-500 overflow-hidden shadow-2xl rounded-xl">
+				<div className=" bg-blue-600/40 h-50 md:w-50 w-full shrink-0 overflow-hidden">
+					<img
+						src={formatImage(image)}
+						alt=""
+						className="object-cover h-full w-full"
+					/>
+				</div>
 				<div className="flex flex-col p-2 gap-2 justify-center">
 					<h4 className="text-xl text-ellipsis line-clamp-1 font-semibold">{title}</h4>
 					<p

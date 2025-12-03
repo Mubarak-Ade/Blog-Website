@@ -3,8 +3,8 @@ import React from "react";
 
 export const Footer = () => {
 	return (
-		<div className="bg-linear-120 px-4  text-white from-custom-200 to-custom-400">
-			<div className="w-full flex py-12 items-center justify-center">
+		<div className="bg-linear-120 px-4 text-white from-custom-200 to-custom-400">
+			<div className="w-full flex flex-col lg:flex-row py-12 items-center justify-center">
 
 				<div className="w-full p-4 space-y-4">
 					<h1 className="text-4xl ">
