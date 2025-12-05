@@ -9,7 +9,7 @@ export const Profile = () => {
         
     return (
         <div className="mx-auto p-6 pb-20">
-            <div className="bg-white p-6 border rounded-2xl">
+            <div className="p-6 border rounded-2xl bg-white dark:bg-gray-900">
                 <h3 className="mb-5 font-semibold text-lg">Profile</h3>
                 <ProfileBanner user={data} loading={isLoading} error={error} />
                 <ProfileInfo user={data} loading={isLoading} error={error} />

@@ -57,7 +57,7 @@ export const Category = () => {
 					{categoryList.map((category) => (
 						<li
 							key={category}
-							className="flex items-center size-30 p-4 bg-slate-300 m-2 justify-center text-center flex-col"
+							className="flex items-center size-30 p-4 border border-gray-900 dark:border-gray-100 shadow-2xl rounded-md m-2 justify-center text-center flex-col"
 						>
 							<span>{category.icon}</span>
 							{category.name}

@@ -31,7 +31,7 @@ export const EditorBar = ({ editor }: Props) => {
 	if (!editor) return null;
 
 	return (
-		<div className="p-2 border-b space-x-4 space-y-4 w-full z-100 bg-blue-900/70">
+		<div className="p-2 border-b space-x-4 space-y-4 w-full z-100">
 			<MenuButton
 				onClick={() => editor?.chain().focus().toggleBold().run()}
 				isActive={editor.isActive("bold")}

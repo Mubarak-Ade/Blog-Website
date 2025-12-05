@@ -9,11 +9,12 @@ export interface Post {
     category: string,
     tags: [string],
     createdAt: string,
+    comment?: Comment
     author: Author
 }
 
 export interface Comment {
-    _id: string,
+    _id?: string,
     text: string,
-    user: Author
+    user?: Author
 }

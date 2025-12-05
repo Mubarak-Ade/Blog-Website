@@ -66,19 +66,19 @@ export const Login = () => {
     };
 
     return (
-        <div className="w-full block p-10 h-screen">
+        <div className="w-full block p-10 h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             <div className="w-full max-w-5xl m-auto h-150">
                 <Card className="p-0 overflow-hidden h-full">
-                    <CardContent className="grid grid-cols-2 p-0 h-full">
+                    <CardContent className="flex lg:flex-row flex-col justify-between p-0 h-full">
                         <form
                             onSubmit={handleSubmit(onSubmit)}
-                            className="h-full bg-white p-8"
+                            className="h-full w-full p-8"
                         >
                             <CardHeader>
                                 <div className="flex flex-col items-center mb-10">
                                     <NotebookText
                                         size={50}
-                                        className="bg-custom-400 rounded-xl text-custom-100 p-3"
+                                        className="rounded-xl p-3"
                                     />
                                     <CardTitle className="text-3xl font-bold mb-2">
                                         Login to Your Account
@@ -141,7 +141,7 @@ export const Login = () => {
                                     )}
                                 </Field>
                                 <Field>
-                                    <Button type="submit" className="bg-custom-400 hover:bg-custom-400/90 cursor-pointer">Submit</Button>
+                                    <Button type="submit" className=" cursor-pointer">Submit</Button>
                                     {errors.root && (
                                         <FieldError>
                                             {errors.root.message}
@@ -155,7 +155,7 @@ export const Login = () => {
                                 </FieldDescription>
                             </FieldGroup>
                         </form>
-                        <div className="flex-1 bg-linear-to-bl from-custom-400 to-custom-200"></div>
+                        <div className="bg-linear-to-bl w-full from-custom-400 to-custom-200"></div>
                     </CardContent>
                 </Card>
             </div>

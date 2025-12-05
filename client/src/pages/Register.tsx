@@ -63,21 +63,21 @@ export const Register = () => {
 	};
 
 	return (
-		<div className="block w-full p-4">
-			<div className="w-full max-w-5xl m-auto h-150">
-				<Card className="p-0 overflow-hidden h-full">
-					<CardContent className="grid grid-cols-2 p-0 h-full">
+		<div className="w-full p-4 min-h-screen flex lg:items-center lg:justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+			<div className="w-full max-w-5xl m-auto">
+				<Card className="p-0 overflow-hidden">
+					<CardContent className="flex flex-col lg:flex-row p-0">
 						<form
 							onSubmit={handleSubmit(onSubmit)}
-							className="h-full bg-white p-8"
+							className="h-full flex-1 w-full p-8"
 						>
 							<CardHeader>
-								<div className="flex flex-col items-center mb-10">
+								<div className="flex flex-col items-center mb-5">
 									<NotebookText
 										size={50}
-										className="bg-custom-400 rounded-xl text-custom-100 p-3"
+										className=" rounded-xl p-3"
 									/>
-									<CardTitle className="text-3xl font-bold mb-2">
+									<CardTitle className="md:text-3xl text-2xl text-center font-bold mb-2">
 										Login to Your Account
 									</CardTitle>
 									<CardDescription>
@@ -86,7 +86,7 @@ export const Register = () => {
 								</div>
 							</CardHeader>
 							<FieldGroup>
-								<FieldSet className="grid grid-cols-2">
+								<FieldSet className="flex flex-col md:flex-row">
 									<Field>
 										<Label htmlFor="">Firstname</Label>
 										<InputGroup>
@@ -140,7 +140,7 @@ export const Register = () => {
 									)}
 								</Field>
 
-								<FieldSet className="grid grid-cols-2">
+								<FieldSet className="flex flex-col lg:flex-row">
 									<Field>
 										<Label htmlFor="">Password</Label>
 										<InputGroup>
@@ -218,7 +218,7 @@ export const Register = () => {
 								<Field>
 									<Button
 										type="submit"
-										className="bg-custom-400 hover:bg-custom-400/90 cursor-pointer"
+										className="cursor-pointer"
 									>
 										Submit
 									</Button>
@@ -239,7 +239,7 @@ export const Register = () => {
 								</FieldDescription>
 							</FieldGroup>
 						</form>
-						<div className="flex-1 bg-linear-to-bl from-custom-400 to-custom-200"></div>
+						<div className=" w-full bg-linear-to-bl lg:flex-1 from-custom-400 to-custom-200"></div>
 					</CardContent>
 				</Card>
 			</div>

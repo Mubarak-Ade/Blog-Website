@@ -1,45 +1,71 @@
-import { RiArrowDownSLine, RiArrowDropDownLine } from "react-icons/ri"; 
+import { RiArrowDownSLine, RiArrowDropDownLine } from "react-icons/ri";
 import Profile from "../../assets/profile.png";
-import { BellIcon, MenuIcon, Search, User } from "lucide-react";
+import { BellIcon, MenuIcon, Moon, Search, Sun, User } from "lucide-react";
 import { useDashboardStore } from "../../store/dashboardStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { formatImage } from "@/util/imageFormat";
 import { useFetchUser } from "@/services/dashboard";
+import { Button } from "../ui/button";
+import { NavAvatar } from "../Navbar/NavAvatar";
+import { useThemeStore } from "@/store/ThemeStore";
+import { NavMenu } from "../Navbar/NavMenu";
+import { useAuthProvider } from "@/store/store";
+import { useNavigate } from "react-router";
 
 export const AppBar = () => {
+	const { data, isLoading } = useFetchUser();
+    const navigate = useNavigate()
 
+	const profilePic = formatImage(data?.profilePic);
+	const { theme, toggleTheme } = useThemeStore();
+	const logout = useAuthProvider((state) => state.logout);
+	const user = useAuthProvider((state) => state.user);
+	const [showMenu, setShowMenu] = useState(false);
+    const Logout = () => {
+		logout();
+		setShowMenu(false);
+		navigate("/login");
+	};
 
-    const {data, isLoading} = useFetchUser()
+	return (
+		<nav className="fixed z-50 bg-white dark:bg-gray-900 flex justify-between right-0 left-0 top-0 items-center overflow-hidden border-b px-6 ml-(--sidebar-width)">
+			<div className="flex items-center flex-1 gap-4 py-4 ">
+				<button className="p-2 border rounded-md ">
+					<MenuIcon size={25} />
+				</button>
+				<div className="relative flex justify-center items-center max-w-md w-full">
+					<button className="left-0 absolute mx-2 ">
+						<Search />
+					</button>
+					<input
+						type="text"
+						placeholder="Search for command"
+						className="inline-block w-full py-2.5 pr-14 pl-10 border rounded-md  placeholder:/50 text-sm"
+					/>
+				</div>
+			</div>
+			<div className="flex items-center gap-4">
+				<BellIcon />
+				<Button
+					size={"icon"}
+					className="cursor-pointer rounded-full"
+					onClick={toggleTheme}
+				>
+					{theme === "dark" ? <Sun /> : <Moon />}
+				</Button>
+				<NavAvatar
+					user={user}
+					showMenu={showMenu}
+					onclick={() => setShowMenu(!showMenu)}
+					profile={profilePic}
+				/>
 
-    const profilePic = formatImage(data?.profilePic)
-
-    return (
-        <nav className="fixed z-50 flex justify-between right-0 left-0 top-0 items-center overflow-hidden bg-white border-b px-6 ml-(--sidebar-width)">
-            <div className="flex items-center flex-1 gap-4 py-4 text-custom-200">
-                <button className="p-2 border border-custom-200 rounded-md text-custom-400">
-                    <MenuIcon size={25} />
-                </button>
-                <div className="relative flex justify-center items-center max-w-md w-full">
-                    <button className="left-0 absolute mx-2 text-custom-400">
-                        <Search />
-                    </button>
-                    <input
-                        type="text"
-                        placeholder="Search for command"
-                        className="inline-block w-full py-2.5 pr-14 pl-10 border border-custom-200 rounded-md  placeholder:text-custom-200/50 text-sm"
-                    />
-                </div>
-            </div>
-            <div className="flex items-center gap-5 text-custom-400 ">
-                <BellIcon />
-                <div className="flex justify-center items-center gap-2">
-                    <img src={profilePic} className="size-10 object-center rounded-full" alt="" />
-                    <h4>{data?.firstname} {data?.lastname}</h4>
-                    <button className="text-2xl cursor-pointer text-custom-400">
-                        <RiArrowDownSLine />
-                    </button>
-                </div>
-            </div>
-        </nav>
-    );
+				<NavMenu
+					user={user}
+					showMenu={showMenu}
+					logout={Logout}
+				/>
+			</div>
+		</nav>
+	);
 };

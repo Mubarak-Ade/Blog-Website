@@ -11,8 +11,8 @@ export const PostCard = (post: Post) => {
     
 	return (
 		<Link to={`/post/${_id}`}>
-			<div className="flex md:flex-row flex-col m-4 gap-4 border border-slate-500 overflow-hidden shadow-2xl rounded-xl">
-				<div className=" bg-blue-600/40 h-50 md:w-50 w-full shrink-0 overflow-hidden">
+			<div className="flex md:flex-row flex-col m-4 gap-4 border border-gray-500 overflow-hidden shadow-2xl rounded-xl">
+				<div className=" h-50 md:w-50 w-full shrink-0 overflow-hidden">
 					<img
 						src={formatImage(image)}
 						alt=""
@@ -23,16 +23,16 @@ export const PostCard = (post: Post) => {
 					<h4 className="text-xl text-ellipsis line-clamp-1 font-semibold">{title}</h4>
 					<p
 						dangerouslySetInnerHTML={{ __html: content }}
-						className="text-ellipsis line-clamp-2 text-sm text-slate-800"
+						className="text-ellipsis line-clamp-2 text-sm"
 					/>
 					<div className="mt-2">
-						<h6 className="capitalize text-custom-500 font-semibold">
+						<h6 className="capitalize font-semibold">
 							{firstname} {lastname}
 						</h6>
-						<span className="text-sm text-gray-500/70">{format(createdAt, "PPpp")}</span>
+						<span className="text-sm ">{format(createdAt, "PPpp")}</span>
 					</div>
 					<div className="">
-						<span className="font-semibold text-custom-300">{category}</span>
+						<span className="font-semibold">{category}</span>
 					</div>
 				</div>
 			</div>

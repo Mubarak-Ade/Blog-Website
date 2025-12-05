@@ -3,8 +3,9 @@ const router = express.Router()
 import * as commentController from "../controllers/commentController.js"
 import auth from "../middleware/authHandler.js"
 
-router.post("/comment/:postId", auth, commentController.postComment);
+router.post("/:postId", auth, commentController.postComment);
 
-router.get("/comments", auth, commentController.getComments)
+router.get("/:postId", commentController.getPostComments)
+router.get("/", auth, commentController.getUserPostComments)
 
 export default router;

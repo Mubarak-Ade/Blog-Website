@@ -3,8 +3,8 @@ import React from "react";
 
 export const Footer = () => {
 	return (
-		<div className="bg-linear-120 px-4 text-white from-custom-200 to-custom-400">
-			<div className="w-full flex flex-col lg:flex-row py-12 items-center justify-center">
+		<div className="border-t px-4">
+			<div className="w-full flex flex-col md:flex-row py-12 items-center justify-center">
 
 				<div className="w-full p-4 space-y-4">
 					<h1 className="text-4xl ">
@@ -13,7 +13,7 @@ export const Footer = () => {
 					</h1>
 					<button className="border p-2 mt-2">Explore now</button>
 				</div>
-				<div className="max-w-xl w-full flex gap-4 bg-custom-400 rounded-md shadow-2xl shadow-custom-200 p-4">
+				<div className="max-w-xl w-full flex gap-4 border rounded-md shadow-2xl p-4">
 
 					<ul className="p-4 space-y-2">
 						<h6 className="font-semibold">Explore By</h6>

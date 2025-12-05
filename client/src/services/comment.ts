@@ -3,10 +3,20 @@ import { Comment, Post } from "@/model/post";
 
 interface postState {
     id: string,
-    data: Post,
+    data: Comment,
 }
 
 export const postComment = async ({id, data} : postState) => {
-    const res = await API.post(`/posts/comment/${id}`, { text: data });
+    const res = await API.post(`/comments/${id}`, data);
+    return res.data
+}
+
+export const getPostComments = async (id: string) => {
+    const res = await API.get(`/comments/${id}`)
+    return res.data
+}
+
+export const getUserComments = async () => {
+    const res = await API.get("/comments")
     return res.data
 }

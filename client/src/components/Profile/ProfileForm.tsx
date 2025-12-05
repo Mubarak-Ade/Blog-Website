@@ -88,7 +88,7 @@ export const ProfileForm = () => {
     };
 
     return (
-        <div className="bg-white p-6 w-full">
+        <div className=" p-6 w-full">
             <form onSubmit={handleSubmit(onSubmit)} className="max-w-3xl">
                 <div className="flex justify-between items-center">
                     <div className="mb-5">
@@ -101,8 +101,8 @@ export const ProfileForm = () => {
                     </div>
                     <div className="">
                         <Link
-                            to="/dashboard/profile"
-                            className="bg-custom-400 text-white px-6 py-3 rounded-2xl"
+                            to={-1}
+                            className=" px-6 py-3 rounded-2xl"
                         >
                             Go Back
                         </Link>

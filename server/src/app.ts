@@ -28,11 +28,11 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/admin/user", auth, isAdmin, adminUserRoutes)
 
 app.use("/api/admin/post", auth, isAdmin, adminPostRoutes)
-app.use("/api/admin/comment", auth, isAdmin, adminCommentRoutes)
+app.use("/api/admin/comments", auth, isAdmin, adminCommentRoutes)
 
 app.use("/api/auth", authRoutes)
 app.use("/api/posts", blogRoutes)
-app.use("/api/posts", commentRoutes)
+app.use("/api/comments", commentRoutes)
 app.use("/api/user", userRoutes)
 
 app.use((error: unknown, req: Request, res: Response, next: NextFunction) =>

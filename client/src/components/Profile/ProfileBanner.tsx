@@ -18,7 +18,7 @@ export const ProfileBanner = ({user, loading, error}) => {
                 />
                 <div className="flex-1 space-y-2">
                     <h4 className="font-bold text-xl capitalize">{user?.firstname} {user?.lastname}</h4>
-                    <div className="flex gap-4 font-medium text-gray-400 text-sm">
+                    <div className="flex gap-4 font-medium text-sm">
                         <span>{user?.email}</span>
                         {/* <span>Kano, Nigeria</span> */}
                     </div>

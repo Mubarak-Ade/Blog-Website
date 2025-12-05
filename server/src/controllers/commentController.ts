@@ -20,8 +20,8 @@ export const postComment: RequestHandler<PostParams, unknown, CommentBody, unkno
         }
         const post = await Post.findById(postId);
         if (!post) {
-                    throw createHttpError(404, "post not found")
-                }
+            throw createHttpError(404, "post not found")
+        }
         // if (post.author.toString() !== req.user.id) {
         //     res.status(401).json({ messsage: "Not Authorize" });
         // }
@@ -40,6 +40,13 @@ export const postComment: RequestHandler<PostParams, unknown, CommentBody, unkno
     }
 }
 
-export const getComments:RequestHandler = async  (req, res) => {
+export const getPostComments: RequestHandler<PostParams, unknown, unknown, unknown> = async (req, res) => {
+    const postId = req.params.postId
+    const comment = await Comment.find({ post: postId }).sort({createdAt: -1}).populate("user")
+    res.json(comment)
+}
+
+export const getUserPostComments: RequestHandler = async (req, res) => {
     const comment = await Comment.find({user: req.user?.id})
+    res.json(comment)
 }

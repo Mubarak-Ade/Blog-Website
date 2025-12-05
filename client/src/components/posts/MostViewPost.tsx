@@ -4,7 +4,7 @@ import React from "react";
 
 export const MostViewPost = ({ posts }: { posts: Post[] }) => {
 	return (
-		<div className="px-4 py-2 bg-slate-100 rounded-md">
+		<div className="px-4 py-2 rounded-md">
 			<h1 className="font-medium text-lg">Most Viewed Posts</h1>
 			<ul className="block space-y-2 mt-4">
 				{posts.slice(0,5).map((post) => (

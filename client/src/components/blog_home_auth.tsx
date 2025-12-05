@@ -62,7 +62,7 @@ export default function BlogSite() {
               </button>
               <button
                 onClick={() => setCurrentPage('register')}
-                className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition"
+                className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:shadow-lg transform hover:-trangray-y-0.5 transition"
               >
                 Sign Up
               </button>
@@ -86,7 +86,7 @@ export default function BlogSite() {
           
           {/* Search Bar */}
           <div className="max-w-2xl mx-auto relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search className="absolute left-4 top-1/2 transform -trangray-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Search articles..."
@@ -138,7 +138,7 @@ export default function BlogSite() {
           {blogPosts.slice(1).map((post) => (
             <div
               key={post.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition duration-300"
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-trangray-y-2 transition duration-300"
             >
               <img
                 src={post.image}
@@ -203,7 +203,7 @@ export default function BlogSite() {
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Mail className="absolute left-3 top-1/2 transform -trangray-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="email"
                   placeholder="you@example.com"
@@ -217,7 +217,7 @@ export default function BlogSite() {
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Lock className="absolute left-3 top-1/2 transform -trangray-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
@@ -226,7 +226,7 @@ export default function BlogSite() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -trangray-y-1/2 text-gray-400 hover:text-gray-600"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -245,7 +245,7 @@ export default function BlogSite() {
 
             <button
               type="button"
-              className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition"
+              className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transform hover:-trangray-y-0.5 transition"
             >
               Sign In
             </button>
@@ -296,7 +296,7 @@ export default function BlogSite() {
                 Full Name
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <User className="absolute left-3 top-1/2 transform -trangray-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
                   placeholder="John Doe"
@@ -310,7 +310,7 @@ export default function BlogSite() {
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Mail className="absolute left-3 top-1/2 transform -trangray-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="email"
                   placeholder="you@example.com"
@@ -324,7 +324,7 @@ export default function BlogSite() {
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Lock className="absolute left-3 top-1/2 transform -trangray-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
@@ -333,7 +333,7 @@ export default function BlogSite() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -trangray-y-1/2 text-gray-400 hover:text-gray-600"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -345,7 +345,7 @@ export default function BlogSite() {
                 Confirm Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Lock className="absolute left-3 top-1/2 transform -trangray-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="password"
                   placeholder="••••••••"
@@ -370,7 +370,7 @@ export default function BlogSite() {
 
             <button
               type="button"
-              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition"
+              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg transform hover:-trangray-y-0.5 transition"
             >
               Create Account
             </button>

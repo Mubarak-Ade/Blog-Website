@@ -28,7 +28,7 @@ export const BlogCard = (post: Post) => {
 
 	return (
 		<Link to={`/post/${_id}`}>
-			<Card className="w-full relative p-0 shadow-2xl pb-4 border border-custom-400 overflow-hidden text-custom-400">
+			<Card className="w-full relative p-0 shadow-2xl pb-4 border border-black dark:border-white dark:bg-gray-900  overflow-hidden text-black dark:text-white ">
 				<CardHeader className="p-0 ">
 					<div className="h-50 w-full overflow-hidden rounded-t-md">
 						<img
@@ -73,7 +73,7 @@ export const BlogCard = (post: Post) => {
 							<span className="font-bold">
 								{author?.firstname} {author?.lastname}
 							</span>
-							<span className="text-custom-400/60 text-sm">
+							<span className="text-sm">
 								{format(createdAt, "PP")}
 							</span>
 						</div>

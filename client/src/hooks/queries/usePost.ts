@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import API from "../../api/api"
 import { createPost, deletePost, editPost, getFilterPosts, getPost, getPosts } from "@/services/post"
-import { postComment } from "@/services/comment"
+import { getPostComments, getUserComments, postComment } from "@/services/comment"
 import { Post } from "@/model/post"
 import { useAuthProvider } from "@/store/store"
 import { adminDeletePost } from "@/services/admin/post"
@@ -87,6 +87,8 @@ export const usePostComment = () => {
         onSuccess: (data, variable) => {
             console.log("Post created successfully", data);
             queryClient.invalidateQueries({ queryKey: ["post", variable.id] })
+            queryClient.invalidateQueries({ queryKey: ["post-comments"] })
+            queryClient.invalidateQueries({ queryKey: ["user-comments"] })
         },
         onError: (err) => {
             console.log("errore creating", err);
@@ -94,3 +96,14 @@ export const usePostComment = () => {
         }
     })
 }
+
+export const useGetUserComment = () => useQuery({
+    queryKey: ["user-comments"],
+    queryFn: getUserComments,
+})
+
+export const useGetPostComment = (id: string) => useQuery({
+    queryKey: ["post-comments"],
+    queryFn: () => getPostComments(id),
+    enabled: !!id
+})

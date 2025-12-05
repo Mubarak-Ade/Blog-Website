@@ -7,16 +7,16 @@ import { SideBar } from "@/components/Dashboard/SideBar";
 export const UserDashboardLayout = () => {
 
     return (
-        <>
+        <div className="bg-white dark:bg-gray-900">
             <SidebarProvider>
                 <SideBar />
-                <div className="w-full relative overflow-hidden">
+                <div className="w-full relative  overflow-hidden">
                     <AppBar />
-                    <main className="pt-18">
+                    <main className="pt-18 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
                         <Outlet />
                     </main>
                 </div>
             </SidebarProvider>
-        </>
+        </div>
     );
 };

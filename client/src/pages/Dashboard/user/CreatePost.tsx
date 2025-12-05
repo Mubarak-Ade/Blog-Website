@@ -100,8 +100,8 @@ export const Create = () => {
 	};
 
 	return (
-		<div className="w-full bg-custom-100 flex items-center justify-center p-4">
-			<Card className="max-w-2xl w-full">
+		<div className="w-full flex items-center justify-center p-4">
+			<Card className="max-w-2xl w-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 				<CardHeader>
 					<CardTitle className="text-xl text-center">
 						Create a Post
@@ -191,7 +191,7 @@ export const Create = () => {
 								</Field>
 							</FieldGroup>
 							<Button
-								className="w-full hover:bg-custom-400 cursor-pointer bg-custom-500 text-custom-100"
+								className="w-full cursor-pointer "
 								size="lg"
 								type="submit"
 							>

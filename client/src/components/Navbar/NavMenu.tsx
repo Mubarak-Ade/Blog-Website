@@ -6,16 +6,16 @@ import { Link } from "react-router";
 interface Props {
 	user: null | User;
 	showMenu: boolean;
-	logout: () => void;
+	logout: any;
 }
 
 export const NavMenu = ({ user, showMenu, logout }: Props) => {
 	return (
 		<>
 			{showMenu && (
-				<ul className="fixed top-15 m-5 shadow-2xl rounded-lg right-0 max-w-3xs space-y-1 w-full text-start items-start bg-white text-gray-700 z-50 p-4">
+				<ul className="fixed top-15 m-5 shadow-2xl rounded-lg right-0 max-w-3xs space-y-1 w-full text-start items-start bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 border z-50 p-4">
 					<h6 className="text-lg text-center m-4 flex items-center gap-2">
-						{user?.name}{" "}
+						{user?.name}
 						{user?.role === "admin" && (
 							<Check
 								className="p-0.5 border border-custom-200 text-custom-400 rounded-full"

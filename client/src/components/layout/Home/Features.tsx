@@ -15,7 +15,7 @@ export const Features = () => {
     }
     
     return (
-        <div className="p-4">
+        <div className="p-4  border-t">
             <div className="flex justify-between items-center p-5">
                 <h1 className="text-3xl font-bold mb-4">Latest Post</h1>
                 <Link to="posts" className="flex gap-2">View more <ArrowRight /></Link>

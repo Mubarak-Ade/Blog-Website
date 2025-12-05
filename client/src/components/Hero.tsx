@@ -21,13 +21,13 @@ export const Hero = () => {
   const post = data?.at(0) || {};
 
   return (
-    <div className="bg-linear-120 lg:flex-row flex-col from-custom-200 to-custom-400 overflow-hidden p-20 w-full flex items-center justify-center px-4">
+    <div className="bg-gray-100 lg:flex-row dark:bg-gray-900 flex-col  overflow-hidden p-20 w-full flex items-center justify-center px-4">
       <div className=" max-w-3xl">
-        <h1 className="lg:text-6xl text-4xl text-center font-bold text-wrap text-custom-100">
+        <h1 className="lg:text-6xl text-4xl text-center font-bold text-wrap text-black dark:text-white">
           Discover Stories That  <br />
           <span className="text-custom-400">Inspire & Educates</span>
         </h1>
-        <p className="md:text-xl mt-5 text-custom-100">
+        <p className="md:text-xl mt-5 text-black dark:text-white">
           Explore insightful articles on technology, design, and development
           from industry experts
         </p>

@@ -16,12 +16,15 @@ import { ViewPost } from "./pages/Main/ViewPost";
 import { PostPage } from "./pages/PostPage";
 import { Register } from "./pages/Register";
 import { useAuthProvider } from "./store/store";
+import { useThemeStore } from "./store/ThemeStore";
+import { useEffect } from "react";
 
 // import { Toaster } from "sonner";
 
 function App() {
 	const token = useAuthProvider((state) => state.token);
 	const user = useAuthProvider((state) => state.user);
+	const theme = useThemeStore(state => state.theme)
 	const ProtectRoute = ({ children }: React.PropsWithChildren) => {
 		return token ? children : <Navigate to="/login" />;
 	};
@@ -32,6 +35,13 @@ function App() {
 		}
 		return children;
 	};
+
+	useEffect(() => {
+		const root = document.documentElement
+		root.classList.remove("light", "dark")
+		root.classList.add(theme)
+	}, [theme])
+	
 	return (
 		<BrowserRouter>
 			{/* <Toaster /> */}
@@ -86,7 +96,7 @@ function App() {
 					/>
 					<Route
 						path="create"
-						element={<Create />}
+						element={<CreatePost />}
 					/>
 					<Route
 						path="profile"
@@ -121,7 +131,7 @@ function App() {
 					/>
 					<Route
 						path="create"
-						element={<Create />}
+						element={<CreatePost />}
 					/>
 					<Route
 						path="profile"

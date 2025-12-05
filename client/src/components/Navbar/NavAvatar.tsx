@@ -13,18 +13,18 @@ export const NavAvatar = ({ user, profile, showMenu, onclick }: Props) => {
 	return (
 		<>
 			{user ? (
-				<div className="flex items-center gap-2">
+				<div className="flex items-center gap-1">
 					<img
 						src={profile}
 						alt={profile}
-						className="lg:size-15 size-10 rounded-full bg-custom-100/50 object-cover"
+						className="lg:size-15 size-10 rounded-full object-cover"
 					/>
 					{/* <h4 className="capitalize font-bold">
                             {data.firstname} {data.firstname}
                         </h4> */}
 					<button
 						onClick={onclick}
-						className="text-2xl cursor-pointer text-custom-100"
+						className="text-xl cursor-pointer"
 					>
 						{showMenu ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
 					</button>
@@ -33,15 +33,9 @@ export const NavAvatar = ({ user, profile, showMenu, onclick }: Props) => {
 				<ul className="flex font-actor gap-4">
 					<Link
 						to="login"
-						className="hover:underline"
+						className="hover:underline bg-sky-500 py-2 px-4 rounded-md"
 					>
-						Login
-					</Link>
-					<Link
-						to="register"
-						className="hover:underline"
-					>
-						Register
+						Get Started
 					</Link>
 				</ul>
 			)}

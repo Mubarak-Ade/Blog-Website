@@ -78,7 +78,7 @@ export const getPost: RequestHandler = async (req, res, next) => {
 }
 
 export const createPost: RequestHandler = async (req, res) => {
-    const { title, content, tags, category } = req.body;
+    let { title, content, tags, category } = req.body;
     let image;
 
     if (req.file) {
@@ -88,6 +88,8 @@ export const createPost: RequestHandler = async (req, res) => {
     if (!title || !content || !tags || !category) {
         throw createHttpError(400, "Fields are missing")
     }
+
+    tags = Array.isArray(tags) ? tags : tags.split(",").map((t:string) => t.trim())
 
     const post = new Post({
         author: req.user?.id,
@@ -121,7 +123,6 @@ export const updatePost: RequestHandler = async (req, res, next) => {
         post.content = content ?? post.content;
         post.category = category ?? post.category;
         if(tags) {
-
             post.tags = Array.isArray(tags) ? tags : tags.split(",").map((t:string) => t.trim())
         }
         await post.save();

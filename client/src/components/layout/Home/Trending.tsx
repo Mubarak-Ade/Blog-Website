@@ -9,7 +9,7 @@ export const Trending = () => {
 			<h1 className="text-3xl font-bold">Trending Posts</h1>
 			<ol className="mt-10">
                 {data?.slice(0, 3).map((post: Partial<Post>) => (
-                    <li className="px-4 py-6 bg-slate-100 m-2">{post.title}</li>
+                    <li className="px-4 py-6 m-2">{post.title}</li>
                 ))}
             </ol>
 		</div>

@@ -19,7 +19,7 @@ const Home = () => {
                     <Button
                         variant="default"
                         size="icon"
-                        className="rounded-full bg-custom-400 shadow-2xl size-12 border border-custom-200 hover:bg-custom-200/80 cursor-pointer"
+                        className="rounded-full shadow-2xl size-12 border cursor-pointer"
                     >
                         <Plus />
                     </Button>
