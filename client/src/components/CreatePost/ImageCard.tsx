@@ -9,7 +9,7 @@ interface Props {
 
 export const ImageCard = ({ preview, handleFileChange }: Props) => {
 	return (
-		<div className="h-fit p-4 bg-white rounded-md">
+		<div className="h-fit p-4 dark:bg-gray-900 bg-white rounded-md">
 			<h4 className="text-base font-bold">Featured Image</h4>
 			<div className="mt-4 relative h-40 border border-gray-300 rounded-md flex justify-center items-center cursor-pointer">
 				<div className="w-full flex items-center justify-center flex-col h-full">

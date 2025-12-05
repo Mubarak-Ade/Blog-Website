@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export const PublishCard = () => {
 	return (
-		<div className="bg-white p-4 rounded-md">
+		<div className="bg-white dark:bg-gray-900 p-4 rounded-md">
 			<h4 className="text-base font-bold">Publish</h4>
 			<div className="mt-2 space-y-2 text-gray-400 text-sm">
 				<h6>Status: Draft</h6>

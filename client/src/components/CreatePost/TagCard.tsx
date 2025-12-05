@@ -52,7 +52,7 @@ export const TagCard = ({ register, errors, setValue, defaultTag }: Props) => {
 	};
 
 	return (
-		<div className="bg-white p-4 rounded-md">
+		<div className="bg-white dark:bg-gray-900 p-4 rounded-md">
 			<h4 className="text-base font-bold">Tags</h4>
 			{tags.length > 0 && (
 				<div className="flex gap-2 flex-wrap mt-2">

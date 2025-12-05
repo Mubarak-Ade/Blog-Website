@@ -24,7 +24,7 @@ export const CategoryCard = ({ register, errors }: CategoryProps) => {
 
 	if (isError || !data) {
 		return (
-			<div className="bg-white p-4 text-sm rounded-md">
+			<div className="bg-white  p-4 text-sm rounded-md">
 				<h4 className="text-base font-bold">Category</h4>
 				<p className="text-red-500 mt-2">Failed to load categories</p>
 			</div>
@@ -35,7 +35,7 @@ export const CategoryCard = ({ register, errors }: CategoryProps) => {
 	const displayCategories = uniqueCategories.slice(0, num)
 
 	return (
-		<div className="bg-white p-4 text-sm rounded-md">
+		<div className="bg-white dark:bg-gray-900 p-4 text-sm rounded-md">
 			<h4 className="text-base font-bold">Category</h4>
 			{displayCategories.splice(0, 5).map((cat, index) => (
 				<div

@@ -19,6 +19,7 @@ import { Post } from "@/model/post";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { formatImage } from "@/util/imageFormat";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowLeft, ArrowUpLeft } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
@@ -78,16 +79,15 @@ export const CreatePost = () => {
 	}, [edit, reset]);
 
 	useEffect(() => {
-	  return () => {
-		if (preview && preview.startsWith('blob:')) {
-			URL.revokeObjectURL(preview);
-		}
-	  }
-	}, [preview])
-	
+		return () => {
+			if (preview && preview.startsWith("blob:")) {
+				URL.revokeObjectURL(preview);
+			}
+		};
+	}, [preview]);
 
 	const success = () => {
-		if (preview && preview.startsWith('blob:')) {
+		if (preview && preview.startsWith("blob:")) {
 			URL.revokeObjectURL(preview);
 		}
 		reset();
@@ -99,7 +99,7 @@ export const CreatePost = () => {
 
 	const onSubmit = useCallback(
 		(data: Omit<Post, "image">) => {
-			const imageToSave = imageFile || (edit?.image ? edit.image : null)
+			const imageToSave = imageFile || (edit?.image ? edit.image : null);
 			const postData = { ...data, image: imageToSave };
 			if (edit) {
 				editPost.mutate(
@@ -146,11 +146,21 @@ export const CreatePost = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className=" bg-gray-100 flex lg:flex-row flex-col gap-5 dark:bg-gray-950 p-8"
 		>
+			<div className="">
+				<Link
+					className="flex items-center gap-2"
+					to="/"
+				>
+					{" "}
+					<ArrowLeft />
+					Go back Home
+				</Link>
+			</div>
 			<div className="space-y-6 flex-1 min-w-0 w-full">
 				<input
 					type="text"
 					{...register("title")}
-					className="border w-full p-3 bg-white rounded-md text-3xl font-bold placeholder:text-gray-300"
+					className="border w-full p-3 bg-white dark:bg-gray-900 rounded-md text-3xl font-bold placeholder:text-gray-300"
 					placeholder="Your Post Title"
 				/>
 				<ErrorMessage message={errors.title?.message as string} />
@@ -160,10 +170,10 @@ export const CreatePost = () => {
 				/>
 				<ErrorMessage message={errors.title?.message as string} />
 			</div>
-			<div className="space-y-4 w-full lg:w-100 lg:shrink-0 mx-auto">
+			<div className="space-y-4 flex lg:flex-col flex-col-reverse w-full lg:w-100 lg:shrink-0 mx-auto">
 				<PublishCard />
 				<CategoryCard
-					errors={errors} 
+					errors={errors}
 					register={register}
 				/>
 				<TagCard

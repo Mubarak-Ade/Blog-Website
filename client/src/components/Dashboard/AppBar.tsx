@@ -11,10 +11,13 @@ import { useThemeStore } from "@/store/ThemeStore";
 import { NavMenu } from "../Navbar/NavMenu";
 import { useAuthProvider } from "@/store/store";
 import { useNavigate } from "react-router";
+import { useSidebar } from "../ui/sidebar";
 
-export const AppBar = () => {
+export const AppBar = ({toggleSidebar}) => {
 	const { data, isLoading } = useFetchUser();
+    const {isMobile, openMobile, setOpenMobile} = useSidebar()
     const navigate = useNavigate()
+
 
 	const profilePic = formatImage(data?.profilePic);
 	const { theme, toggleTheme } = useThemeStore();
@@ -27,13 +30,15 @@ export const AppBar = () => {
 		navigate("/login");
 	};
 
+	// if(!isMobile) return null
+
 	return (
-		<nav className="fixed z-50 bg-white dark:bg-gray-900 flex justify-between right-0 left-0 top-0 items-center overflow-hidden border-b px-6 ml-(--sidebar-width)">
+		<nav className="fixed z-50 w-full bg-white dark:bg-gray-900 flex justify-between right-0 left-0 top-0 items-center overflow-hidden border-b px-6">
 			<div className="flex items-center flex-1 gap-4 py-4 ">
-				<button className="p-2 border rounded-md ">
+				<button onClick={() => setOpenMobile(!openMobile)} className="p-2 border rounded-md ">
 					<MenuIcon size={25} />
 				</button>
-				<div className="relative flex justify-center items-center max-w-md w-full">
+				{/* <div className="relative flex justify-center items-center max-w-md w-full">
 					<button className="left-0 absolute mx-2 ">
 						<Search />
 					</button>
@@ -42,7 +47,7 @@ export const AppBar = () => {
 						placeholder="Search for command"
 						className="inline-block w-full py-2.5 pr-14 pl-10 border rounded-md  placeholder:/50 text-sm"
 					/>
-				</div>
+				</div> */}
 			</div>
 			<div className="flex items-center gap-4">
 				<BellIcon />

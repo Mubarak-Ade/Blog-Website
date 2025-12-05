@@ -44,7 +44,7 @@ const link = [
 export const SideBar = () => {
     return (
         <>
-            <Sidebar className="space-y-4 shadow-2xl px-5 ">
+            <Sidebar collapsible="offcanvas" className="space-y-4 shadow-2xl px-5 ">
                 <SidebarHeader className="flex justify-center bg-white dark:bg-gray-900 items-center pt-8 pb-7">
                     <Link to="/">
                         <h1 className="px-5 font-bold text-4xl">Aim Blog</h1>

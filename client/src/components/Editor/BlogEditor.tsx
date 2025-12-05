@@ -33,7 +33,7 @@ export const BlogEditor = ({value, onChange} : Props) => {
         },
         editorProps: {
             attributes: {
-                class: "h-40 bg-white prose prose-invert overflow-auto outline-none p-2"
+                class: "h-40 bg-white dark:bg-gray-900 prose prose-invert overflow-auto outline-none p-2"
             }
         }
     })
