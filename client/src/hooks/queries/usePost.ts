@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import API from "../../api/api"
-import { createPost, deletePost, editPost, getFilterPosts, getPost, getPosts } from "@/services/post"
+import { createPost, deletePost, updatePost, getFilterPosts, getPost, getPosts } from "@/services/post"
 import { getPostComments, getUserComments, postComment } from "@/services/comment"
 import { Post } from "@/model/post"
 import { useAuthProvider } from "@/store/store"
@@ -51,7 +51,7 @@ export const useEditPost = () => {
     const queryClient = useQueryClient()
 
     return useMutation({
-        mutationFn: editPost,
+        mutationFn: updatePost,
         onSuccess: (data, variable) => {
             console.log("Post edited successfully", data);
             queryClient.invalidateQueries({ queryKey: ["posts"] }),

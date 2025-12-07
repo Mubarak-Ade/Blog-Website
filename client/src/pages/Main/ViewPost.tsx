@@ -37,7 +37,7 @@ export const ViewPost = () => {
               <p>Published on {format(data.post.createdAt, "PPpp")}</p>
           </div>
           <div className="my-5 max-w-4xl w-full h-100 border">
-            <img src={`http://localhost:4000/${data?.post?.image}`} className="size-full object-cover" alt="" />
+            <img src={data?.post?.image} className="size-full object-cover" alt="" />
           </div>
           <h6 className="capitalize ">
             category:{" "}

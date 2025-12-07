@@ -14,7 +14,7 @@ export const PostCard = (post: Post) => {
 			<div className="flex md:flex-row flex-col m-4 gap-4 border border-gray-500 overflow-hidden shadow-2xl rounded-xl">
 				<div className=" h-50 md:w-50 w-full shrink-0 overflow-hidden">
 					<img
-						src={formatImage(image)}
+						src={image}
 						alt=""
 						className="object-cover h-full w-full"
 					/>

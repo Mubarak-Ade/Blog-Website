@@ -7,7 +7,7 @@ export interface Post {
     title: string
     content: string,
     category: string,
-    tags: [string],
+    tags: string[],
     createdAt: string,
     comment?: Comment
     author: Author

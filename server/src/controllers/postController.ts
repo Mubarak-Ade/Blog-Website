@@ -3,6 +3,7 @@ import Post from "../models/Post.js";
 import createHttpError from "http-errors"
 import Comment from "../models/Comment.js";
 import User from "../models/User.js";
+import { uploadImage } from "../services/uploadService.js";
 
 
 export const getFilterPost: RequestHandler = async (req, res, next) => {
@@ -78,12 +79,7 @@ export const getPost: RequestHandler = async (req, res, next) => {
 }
 
 export const createPost: RequestHandler = async (req, res) => {
-    let { title, content, tags, category } = req.body;
-    let image;
-
-    if (req.file) {
-        image = `uploads/post/${req.file.filename}`
-    }
+    let { title, content, tags, category, image } = req.body;
 
     if (!title || !content || !tags || !category) {
         throw createHttpError(400, "Fields are missing")
@@ -108,17 +104,18 @@ export const updatePost: RequestHandler = async (req, res, next) => {
     try {
         let { title, content, category, tags, image } = req.body;
         const post = await Post.findById(req.params.id);
+        console.log("=== UPDATE POST BACKEND ===");
+        console.log("Params ID:", req.params.id);
+        console.log("Body:", req.body);
+        console.log("==========================");
         if (!post) {
             throw createHttpError(404, "post not found")
         }
         if (post.author.toString() !== req.user?.id) {
             throw createHttpError(403, "unauthorize, you are not allowed to update this post")
         }
-
-        if (req.file) {
-            post.image = `uploads/post/${req.file.filename}`
-        }
-
+        
+        post.image = image ?? post.image;
         post.title = title ?? post.title;
         post.content = content ?? post.content;
         post.category = category ?? post.category;

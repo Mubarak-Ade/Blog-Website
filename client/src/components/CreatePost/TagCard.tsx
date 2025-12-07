@@ -8,11 +8,11 @@ interface Props {
 	register: UseFormRegister<Post>;
 	errors: FieldErrors<Post>;
 	setValue: UseFormSetValue<Post>;
-	defaultTag: []
+	defaultTag: string;
 }
 
 export const TagCard = ({ register, errors, setValue, defaultTag }: Props) => {
-	const [tags, setTags] = useState<string[]>(defaultTag || []);
+	const [tags, setTags] = useState<string[]>(defaultTag ? defaultTag.split(",").map(t => t.trim()).filter(Boolean) : []);
 	const [inputValue, setInputValue] = useState("");
 
 	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -72,8 +72,6 @@ export const TagCard = ({ register, errors, setValue, defaultTag }: Props) => {
 			<input
 				{...register("tags")}
 				type="hidden"
-				className="border mt-4 w-full py-2 px-4 placeholder:text-gray-500/50 text-sm rounded-md"
-				placeholder="Enter tags separated by comma"
 			/>
 			<input
 				type="text"
@@ -84,7 +82,7 @@ export const TagCard = ({ register, errors, setValue, defaultTag }: Props) => {
 				className="border mt-4 w-full py-2 px-4 placeholder:text-gray-500/50 text-sm rounded-md"
 				placeholder="Enter tags separated by comma"
 			/>
-			<ErrorMessage message={errors.title?.message as string} />
+			<ErrorMessage message={errors.tags?.message as string} />
 		</div>
 	);
 };

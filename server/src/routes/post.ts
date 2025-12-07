@@ -5,13 +5,6 @@ import multer from 'multer'
 import * as postConroller from "../controllers/postController.js"
 const router = express.Router();
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, "uploads/post/"),
-    filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
-})
-
-const upload = multer({storage})
-
 // ----------------get all post ---------------
 
 
@@ -25,11 +18,11 @@ router.get("/:id", postConroller.getPost);
 
 // ----------------create a post ---------------
 
-router.post("/", auth, upload.single("image"), postConroller.createPost);
+router.post("/", auth, postConroller.createPost);
 
 // ----------------update/edit a post ---------------
 
-router.put("/:id", auth, upload.single("image"), postConroller.updatePost);
+router.put("/:id", auth, postConroller.updatePost);
 
 // ----------------delete post ---------------
 

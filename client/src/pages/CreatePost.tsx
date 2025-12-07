@@ -18,6 +18,7 @@ import { useCreatePost, useEditPost } from "@/hooks/queries/usePost";
 import { Post } from "@/model/post";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { formatImage } from "@/util/imageFormat";
+import { uploadToCloudinary } from "@/util/uploadToCloudinary";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, ArrowUpLeft } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
@@ -29,7 +30,20 @@ const schema = z.object({
 	title: z.string().min(3, "Post title is required"),
 	content: z.string().min(20),
 	category: z.string().min(3, "Category field is empty"),
-	tags: z.string().min(3, "Add at least 1 tags"),
+	tags: z
+		.string()
+		.transform((value) =>
+			value
+				.split(",")
+				.map((t) => t.trim())
+				.filter(Boolean)
+		)
+		.refine((arr) => arr.length > 0, {
+			message: "Add at least one tag",
+		})
+		.refine((arr) => arr.every((t) => t.length >= 2), {
+			message: "Each tag must be at least 2 characters",
+		}),
 });
 
 export const ErrorMessage = ({ message }: { message: string }) => {
@@ -39,6 +53,7 @@ export const ErrorMessage = ({ message }: { message: string }) => {
 
 export const CreatePost = () => {
 	const edit = useDashboardStore((s) => s.edit);
+	const clearEdit = useDashboardStore((s) => s.clearEdit);
 
 	const editPost = useEditPost();
 	const createPost = useCreatePost();
@@ -56,7 +71,6 @@ export const CreatePost = () => {
 		reset,
 	} = useForm<Post>({
 		resolver: zodResolver(schema),
-		defaultValues: {},
 	});
 
 	const content = watch("content");
@@ -67,7 +81,7 @@ export const CreatePost = () => {
 				title: edit?.title || "",
 				content: edit?.content || "",
 				category: edit?.category || "",
-				tags: edit?.tags || "",
+				tags: Array.isArray(edit?.tags) ? edit.tags.join(", ") : ""
 			});
 
 			if (edit.image) {
@@ -93,35 +107,56 @@ export const CreatePost = () => {
 		reset();
 		console.log("data created successfully");
 		setPreview("");
+		clearEdit();
 		setImageFile(null);
 		navigate(-1);
 	};
 
+	console.log(edit?._id);
+	
+
 	const onSubmit = useCallback(
-		(data: Omit<Post, "image">) => {
-			const imageToSave = imageFile || (edit?.image ? edit.image : null);
-			const postData = { ...data, image: imageToSave };
-			if (edit) {
-				editPost.mutate(
-					{ id: edit._id, data: postData },
-					{
+		async (data: Omit<Post, "image">) => {
+			try {
+				let imageUrl = edit?.image || null;
+
+				// Upload new file if user selected one
+				if (imageFile instanceof File) {
+					imageUrl = await uploadToCloudinary(imageFile);
+
+					if (!imageUrl) {
+						console.error("Image upload failed");
+						return;
+					}
+				}
+
+				const postData: Post = {
+					...data,
+					image: imageUrl,
+				};
+				if (edit) {
+					await editPost.mutateAsync(
+						{ id: edit._id, data: postData },
+						{
+							onSuccess: success,
+							onError: (error) => {
+								console.log("Errors", error);
+							},
+						}
+					);
+				} else {
+					await createPost.mutateAsync(postData, {
 						onSuccess: success,
 						onError: (error) => {
 							console.log("Errors", error);
 						},
-					}
-				);
-			} else {
-				createPost.mutate(postData, {
-					onSuccess: success,
-					onError: (error) => {
-						console.log("Errors", error);
-					},
-				});
+					});
+				}
+			} catch (error) {
+				console.error("Post or edit error:", error);
 			}
-			console.log(data);
 		},
-		[imageFile, createPost, editPost, edit, success]
+		[imageFile, createPost, editPost, edit, success, clearEdit]
 	);
 
 	const handleFileChange = useCallback(
@@ -139,6 +174,9 @@ export const CreatePost = () => {
 	if (createPost.isPending || editPost.isPending) {
 		return <Loader loading={true} />;
 	}
+
+	console.log(edit?._id);
+
 
 	return (
 		<form
@@ -168,7 +206,7 @@ export const CreatePost = () => {
 					value={content}
 					onChange={(html) => setValue("content", html)}
 				/>
-				<ErrorMessage message={errors.title?.message as string} />
+				<ErrorMessage message={errors.content?.message as string} />
 			</div>
 			<div className="space-y-4 flex lg:flex-col flex-col-reverse w-full lg:w-100 lg:shrink-0 mx-auto">
 				<PublishCard />
@@ -179,7 +217,7 @@ export const CreatePost = () => {
 				<TagCard
 					setValue={setValue}
 					errors={errors}
-					defaultTag={edit && edit.tags}
+					defaultTag={edit ? edit.tags.join(", ") : ""}
 					register={register}
 				/>
 				<ImageCard

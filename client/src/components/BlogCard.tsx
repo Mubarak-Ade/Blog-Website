@@ -32,7 +32,7 @@ export const BlogCard = (post: Post) => {
 				<CardHeader className="p-0 ">
 					<div className="h-50 w-full overflow-hidden rounded-t-md">
 						<img
-							src={formatImage(image)}
+							src={image}
 							alt=""
 							className="object-cover h-full w-full"
 						/>
