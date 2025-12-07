@@ -7,7 +7,7 @@ export const ProfileBanner = ({user, loading, error}) => {
 
 
     return (
-        <div className="flex gap-5 mb-5 px-5 py-4 border rounded-2xl">
+        <div className="flex lg:flex-row flex-col gap-5 mb-5 px-5 py-4 border rounded-2xl">
             <div className="flex flex-1 items-center gap-10">
                 <img
                     src={user?.profilePic}
@@ -21,7 +21,7 @@ export const ProfileBanner = ({user, loading, error}) => {
                         {/* <span>Kano, Nigeria</span> */}
                     </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="hidden lg:flex gap-2">
                     <button className="p-3 border rounded-full">
                         <Facebook />
                     </button>
@@ -36,11 +36,11 @@ export const ProfileBanner = ({user, loading, error}) => {
                     </button>
                 </div>
             </div>
-            <div className="block m-auto">
-                <Link to="edit" className="flex justify-center items-center gap-2 px-4 py-2 border rounded-3xl">
+            <button className="block lg:w-auto w-full m-auto">
+                <Link to="edit" className="flex w-full justify-center items-center gap-2 px-4 py-2 border rounded-3xl">
                     <Pen size={15} /> Edit
                 </Link>
-            </div>
+            </button>
         </div>
     );
 };

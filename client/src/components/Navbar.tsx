@@ -50,7 +50,7 @@ const Navbar = () => {
 			/>
 			<Link className="font-alice ml-10 self-center text-center md:text-4xl text-3xl text-gray-900 dark:text-white  font-bold " to="/">
 				<h1>
-					AIM Blog
+					AIM BLOG
 				</h1>
 			</Link>
 			<NavList

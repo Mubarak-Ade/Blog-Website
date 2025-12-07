@@ -10,7 +10,7 @@ import { NavAvatar } from "../Navbar/NavAvatar";
 import { useThemeStore } from "@/store/ThemeStore";
 import { NavMenu } from "../Navbar/NavMenu";
 import { useAuthProvider } from "@/store/store";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useSidebar } from "../ui/sidebar";
 
 export const AppBar = ({toggleSidebar}) => {
@@ -48,6 +48,7 @@ export const AppBar = ({toggleSidebar}) => {
 						className="inline-block w-full py-2.5 pr-14 pl-10 border rounded-md  placeholder:/50 text-sm"
 					/>
 				</div> */}
+				<Link to="/"><h1 className="text-3xl font-bold ml-3">AIM BLOG</h1></Link>
 			</div>
 			<div className="flex items-center gap-4">
 				<BellIcon />
