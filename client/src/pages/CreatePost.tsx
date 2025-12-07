@@ -4,23 +4,13 @@ import { PublishCard } from "@/components/CreatePost/PublishCard";
 import { TagCard } from "@/components/CreatePost/TagCard";
 import { BlogEditor } from "@/components/Editor/BlogEditor";
 import { Loader } from "@/components/Loader";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-	Field,
-	FieldError,
-	FieldGroup,
-	FieldLabel,
-} from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useCreatePost, useEditPost } from "@/hooks/queries/usePost";
 import { Post } from "@/model/post";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { formatImage } from "@/util/imageFormat";
 import { uploadToCloudinary } from "@/util/uploadToCloudinary";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, ArrowUpLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
@@ -122,7 +112,8 @@ export const CreatePost = () => {
 
 				// Upload new file if user selected one
 				if (imageFile instanceof File) {
-					imageUrl = await uploadToCloudinary(imageFile);
+					imageUrl = await uploadToCloudinary(imageFile, "blog_posts");
+
 
 					if (!imageUrl) {
 						console.error("Image upload failed");

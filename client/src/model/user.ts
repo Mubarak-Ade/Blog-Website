@@ -19,7 +19,7 @@ export interface UserProfile {
     firstname: string,
     lastname: string
     email: string,
-    profile?: any,
+    profilePic?: any,
     phone: any,
     bio: string
     x: string,

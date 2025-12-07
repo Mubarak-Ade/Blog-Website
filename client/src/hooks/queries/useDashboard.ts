@@ -9,6 +9,7 @@ export const getUserInfo = async () => {
 
 export const editUserInfo = async (data: UserProfile) => {
     const res = await API.put("user/me/edit", data);
+
     return res.data
 }
 
