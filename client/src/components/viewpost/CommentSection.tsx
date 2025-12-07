@@ -62,12 +62,12 @@ export const CommentSection = ({ id }: { id?: string }) => {
 					className="block"
 				>
 					<textarea
-						className="border w-full rounded-2xl p-4 bg-white border-custom-400 mt-4"
+						className="border w-full rounded-2xl p-4 bg-white dark:bg-gray-900 border-custom-400 mt-4"
 						rows={4}
 						{...register("text")}
 						placeholder="Enter a comment"
 					/>
-					<button className="bg-blue-500 px-6 py-2 mt-2 text-custom-100 rounded-xl block ml-auto">
+					<button className="bg-blue-500 px-6 py-2 mt-2 rounded-xl block ml-auto">
 						Post Comment
 					</button>
 					{errors.text && (

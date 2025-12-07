@@ -1,19 +1,17 @@
 import { Comment as CommentModel } from '@/model/post'
-import { formatImage } from '@/util/imageFormat'
-import React from 'react'
 
 export const Comment = ({comment} : {comment: CommentModel[]}) => {  
   return (
     <div className="flex items-center gap-8 flex-col">
           {/* Comments will go here */}
           {comment && comment?.length > 0 ? (
-            comment?.map((com) => (
+            comment?.slice(0,5).map((com) => (
               <div
                 key={com._id}
                 className="flex m-2 rounded-lg w-full"
               >
                   <img
-                    src={formatImage(com?.user?.profilePic)}
+                    src={com?.user?.profilePic}
                     alt=""
                     className="size-12 rounded-full"
                   />
