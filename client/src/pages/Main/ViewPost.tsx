@@ -32,7 +32,7 @@ export const ViewPost = () => {
             {data?.post?.title}
           </h1>
           <div className="mt-4 flex flex-wrap gap-4 items-center">
-              <img src={formatImage(data.post.author.profilePic)} className="size-15 rounded-full" alt="" />
+              <img src={data.post.author.profilePic} className="size-15 rounded-full" alt="" />
               <h6 className="font-bold">By {data.post.author.firstname} {data.post.author.lastname}</h6>
               <p>Published on {format(data.post.createdAt, "PPpp")}</p>
           </div>

@@ -29,8 +29,6 @@ const Navbar = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const [showNav, setShowNav] = useState(false);
 
-	const profilePic = formatImage(user?.profile);
-
 	// console.log(data);
 
 	const navigate = useNavigate();
@@ -65,7 +63,7 @@ const Navbar = () => {
 					user={user}
 					showMenu={showMenu}
 					onclick={() => setShowMenu(!showMenu)}
-					profile={profilePic}
+					profile={user?.profilePic}
 				/>
 			</div>
 

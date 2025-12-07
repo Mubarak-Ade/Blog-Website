@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 interface Props {
 	user: null | {};
-	profile: string;
+	profile: string | undefined;
 	showMenu: boolean;
 	onclick: () => void;
 }

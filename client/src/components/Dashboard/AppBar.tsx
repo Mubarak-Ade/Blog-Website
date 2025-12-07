@@ -19,7 +19,6 @@ export const AppBar = ({toggleSidebar}) => {
     const navigate = useNavigate()
 
 
-	const profilePic = formatImage(data?.profilePic);
 	const { theme, toggleTheme } = useThemeStore();
 	const logout = useAuthProvider((state) => state.logout);
 	const user = useAuthProvider((state) => state.user);
@@ -63,7 +62,7 @@ export const AppBar = ({toggleSidebar}) => {
 					user={user}
 					showMenu={showMenu}
 					onclick={() => setShowMenu(!showMenu)}
-					profile={profilePic}
+					profile={user?.profilePic}
 				/>
 
 				<NavMenu
