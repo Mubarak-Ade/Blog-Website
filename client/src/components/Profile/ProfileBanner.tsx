@@ -1,18 +1,16 @@
 import React from "react";
-import Png from "../../assets/user (1).png";
 import { Facebook, Instagram, Linkedin, Pen, Twitter } from "lucide-react";
 import { Link } from "react-router";
 import { formatImage } from "@/util/imageFormat";
 
 export const ProfileBanner = ({user, loading, error}) => {
 
-    const profilePic = formatImage(user?.profilePic)
 
     return (
         <div className="flex gap-5 mb-5 px-5 py-4 border rounded-2xl">
             <div className="flex flex-1 items-center gap-10">
                 <img
-                    src={profilePic}
+                    src={user?.profilePic}
                     alt=""
                     className="border rounded-full size-25 object-top-left"
                 />

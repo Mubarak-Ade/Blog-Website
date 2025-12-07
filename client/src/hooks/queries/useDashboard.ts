@@ -8,19 +8,7 @@ export const getUserInfo = async () => {
 }
 
 export const editUserInfo = async (data: UserProfile) => {
-    let imageUrl = null
-
-    if (data.profile instanceof File) {
-        imageUrl = await uploadToCloudinary(data.profile)
-    }
-    const payload = {
-        ...data,
-        image: imageUrl
-    }
-
-    console.log("data", payload);
-    const res = await API.put("user/me/edit", payload);
-
+    const res = await API.put("user/me/edit", data);
     return res.data
 }
 

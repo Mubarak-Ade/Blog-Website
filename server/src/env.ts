@@ -5,7 +5,4 @@ export default cleanEnv(process.env, {
     MONGO_DEV_URI: str(),
     MONGO_PROD_URI: str(),
     JWT_SECRET: str(),
-    CLOUD_NAME: str(),
-    CLOUD_KEY: str(),
-    CLOUD_SECRET: str(),
 })
