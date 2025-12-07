@@ -3,20 +3,11 @@ import User from "../models/User.js";
 const router = express.Router();
 import multer from "multer";
 import auth from "../middleware/authHandler.js";
-import { uploadImage } from "../services/uploadService.js";
 
-const storage = multer.memoryStorage();
 
-const upload = multer({ storage });
-
-router.put("/me/edit", auth, upload.single("profilePic"), async (req, res) => {
+router.put("/me/edit", auth, async (req, res) => {
     try {
         const updates = { ...req.body };
-
-        if (req.file) {
-            const imageUrl = uploadImage(req.file.buffer)
-            updates.profilePic = imageUrl
-        }
 
         updates.social = {
             x: req.body.x,

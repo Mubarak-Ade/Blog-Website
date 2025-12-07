@@ -3,7 +3,6 @@ import Post from "../models/Post.js";
 import createHttpError from "http-errors"
 import Comment from "../models/Comment.js";
 import User from "../models/User.js";
-import { uploadImage } from "../services/uploadService.js";
 
 
 export const getFilterPost: RequestHandler = async (req, res, next) => {
