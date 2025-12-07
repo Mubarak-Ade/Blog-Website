@@ -65,7 +65,7 @@ export const BlogCard = (post: Post) => {
 				<CardFooter className="block space-y-4 px-4">
 					<div className="flex items-center gap-4">
 						<img
-							src={formatImage(author?.profilePic)}
+							src={author?.profilePic}
 							alt="profile pic"
 							className="size-15 border rounded-full"
 						/>

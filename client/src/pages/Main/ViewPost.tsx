@@ -22,6 +22,8 @@ export const ViewPost = () => {
 
   // const tags:[] = data?.post?.tags?.split(",");
 
+  console.log(data)
+
   
 
   return (

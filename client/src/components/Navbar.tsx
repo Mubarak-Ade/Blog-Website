@@ -63,7 +63,7 @@ const Navbar = () => {
 					user={user}
 					showMenu={showMenu}
 					onclick={() => setShowMenu(!showMenu)}
-					profile={user?.profilePic}
+					profile={user?.profile}
 				/>
 			</div>
 

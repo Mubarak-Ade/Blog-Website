@@ -62,7 +62,7 @@ export const AppBar = ({toggleSidebar}) => {
 					user={user}
 					showMenu={showMenu}
 					onclick={() => setShowMenu(!showMenu)}
-					profile={user?.profilePic}
+					profile={user?.profile}
 				/>
 
 				<NavMenu

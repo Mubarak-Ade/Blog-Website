@@ -10,6 +10,7 @@ interface Props {
 }
 
 export const NavAvatar = ({ user, profile, showMenu, onclick }: Props) => {
+	console.log(user)
 	return (
 		<>
 			{user ? (
