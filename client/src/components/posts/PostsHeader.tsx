@@ -79,7 +79,7 @@ export const PostsHeader = () => {
 					</InputGroupButton>
 				</InputGroup>
 			</form>
-			<div className="flex m-auto items-center justify-center gap-4">
+			<div className="flex m-auto items-center flex-wrap justify-center gap-4">
 				<Select
 					name="category"
 					value={category}

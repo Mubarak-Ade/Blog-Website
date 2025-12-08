@@ -55,7 +55,7 @@ export const PostPage = () => {
 				</h4>
 			</div>
 			<PostsHeader />
-		<div className="flex lg:flex-row flex-col">
+		<div className="flex lg:flex-row  flex-col">
 				<div className="gap-5 lg:p-5 max-w-4xl w-full">
 					{posts.map((post: Post) => (
 						<PostCard {...post} key={post._id} />
