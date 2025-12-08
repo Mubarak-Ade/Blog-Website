@@ -40,7 +40,7 @@ export const NavList = ({
 			>
 				Posts
 			</Link>
-			<Link className="hover:underline">About</Link>
+			<Link to="/about" className="hover:underline">About</Link>
 			<Link className="hover:underline">Contact</Link>
 			<Button
 				size={"icon-sm"}

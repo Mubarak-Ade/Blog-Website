@@ -9,9 +9,9 @@ import {
 	NotebookText,
 	Sun,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useAuthProvider } from "../store/store";
 import { NavList } from "./Navbar/NavList";
 import { NavAvatar } from "./Navbar/NavAvatar";
@@ -32,12 +32,17 @@ const Navbar = () => {
 	// console.log(data);
 
 	const navigate = useNavigate();
+	const location = useLocation();
+
 	const Logout = () => {
 		logout();
 		setShowMenu(false);
 		navigate("/login");
 	};
 
+	useEffect(() => {
+		setShowNav(false)
+	}, [location]);
 	return (
 		<nav
 			className={`flex justify-between w-full z-50 border-b text-gray-900 items-center bg-gray-100 dark:bg-gray-900 dark:text-white py-4 lg:py-2 px-4 fixed`}

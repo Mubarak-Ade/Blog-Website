@@ -47,7 +47,7 @@ export const AppBar = ({toggleSidebar}) => {
 						className="inline-block w-full py-2.5 pr-14 pl-10 border rounded-md  placeholder:/50 text-sm"
 					/>
 				</div> */}
-				<Link to="/"><h1 className="text-3xl font-bold ml-3">AIM BLOG</h1></Link>
+				{/* <Link to="/"><h1 className="text-3xl font-bold ml-3">AIM BLOG</h1></Link> */}
 			</div>
 			<div className="flex items-center gap-4">
 				<BellIcon />
@@ -58,18 +58,6 @@ export const AppBar = ({toggleSidebar}) => {
 				>
 					{theme === "dark" ? <Sun /> : <Moon />}
 				</Button>
-				<NavAvatar
-					user={user}
-					showMenu={showMenu}
-					onclick={() => setShowMenu(!showMenu)}
-					profile={user?.profile}
-				/>
-
-				<NavMenu
-					user={user}
-					showMenu={showMenu}
-					logout={Logout}
-				/>
 			</div>
 		</nav>
 	);

@@ -3,6 +3,7 @@ import Post from "../models/Post.js";
 import createHttpError from "http-errors"
 import Comment from "../models/Comment.js";
 import User from "../models/User.js";
+import mongoose from "mongoose";
 
 
 export const getFilterPost: RequestHandler = async (req, res, next) => {
@@ -11,19 +12,17 @@ export const getFilterPost: RequestHandler = async (req, res, next) => {
 
         const query: any = {}
 
-        if (category) query.category = {$regex: category, $options: "i"}
-        if(tags) query.tags = {$in: tags, $options: "i"}
-        const authorName = [{firstname: {$regex: author, $options: "i"}}, {lastname: {$regex: author, $options: "i"}}]
-        if (author) {
-            const users = await User.find({$or: authorName}).select("_id")
-            const ids = users.map(u => u._id)
-            query.author = {$in: ids}
+        if (category) query.category = { $regex: category, $options: "i" }
+        // if(tags) query.tags = {$in: tags, $options: "i"}
+        if (author && author !== "f") {
+            query.author = author
         }
 
         if (search) {
             query.$or = [
                 { title: { $regex: search, $options: "i" } },
-                { content: { $regex: search, $options: "i" } }
+                { content: { $regex: search, $options: "i" } },
+                { tags: { $in: tags } }
             ]
         }
 
@@ -84,7 +83,7 @@ export const createPost: RequestHandler = async (req, res) => {
         throw createHttpError(400, "Fields are missing")
     }
 
-    tags = Array.isArray(tags) ? tags : tags.split(",").map((t:string) => t.trim())
+    tags = Array.isArray(tags) ? tags : tags.split(",").map((t: string) => t.trim())
 
     const post = new Post({
         author: req.user?.id,
@@ -113,13 +112,13 @@ export const updatePost: RequestHandler = async (req, res, next) => {
         if (post.author.toString() !== req.user?.id) {
             throw createHttpError(403, "unauthorize, you are not allowed to update this post")
         }
-        
+
         post.image = image ?? post.image;
         post.title = title ?? post.title;
         post.content = content ?? post.content;
         post.category = category ?? post.category;
-        if(tags) {
-            post.tags = Array.isArray(tags) ? tags : tags.split(",").map((t:string) => t.trim())
+        if (tags) {
+            post.tags = Array.isArray(tags) ? tags : tags.split(",").map((t: string) => t.trim())
         }
         await post.save();
         res.json({

@@ -18,6 +18,7 @@ import { Register } from "./pages/Register";
 import { useAuthProvider } from "./store/store";
 import { useThemeStore } from "./store/ThemeStore";
 import { useEffect } from "react";
+import { AboutPage } from "./pages/Main/AboutPage";
 
 // import { Toaster } from "sonner";
 
@@ -58,6 +59,10 @@ function App() {
 					<Route
 						path="posts"
 						element={<PostPage />}
+					/>
+					<Route
+						path="about"
+						element={<AboutPage />}
 					/>
 				</Route>
 				<Route

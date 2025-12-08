@@ -34,8 +34,8 @@ export const ViewPost = () => {
             {data?.post?.title}
           </h1>
           <div className="mt-4 flex flex-wrap gap-4 items-center">
-              <img src={data.post.author.profilePic} className="size-15 rounded-full" alt="" />
-              <h6 className="font-bold">By {data.post.author.firstname} {data.post.author.lastname}</h6>
+              <img src={data.post.author?.profilePic} className="size-15 rounded-full" alt="" />
+              <h6 className="font-bold">By {data.post.author?.firstname} {data.post.author?.lastname}</h6>
               <p>Published on {format(data.post.createdAt, "PPpp")}</p>
           </div>
           <div className="my-5 max-w-4xl w-full h-100 border">

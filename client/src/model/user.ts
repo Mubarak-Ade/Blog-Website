@@ -3,7 +3,7 @@ export interface User {
     name?: string,
     role: string,
     email: string,
-    profilePic: string,
+    profile: string,
 }
 
 export interface Author {
