@@ -1,24 +1,13 @@
-import { useFetchPosts } from "@/hooks/queries/usePost";
-import { formatImage } from "@/util/imageFormat";
+import { Post } from "@/model/post";
 import { BlogCard } from "./BlogCard";
-import { ClipLoader } from "react-spinners";
-import { Loader } from "./Loader";
 
-export const Hero = () => {
-  const { data, isLoading, error } = useFetchPosts()
+interface Props {
+  posts: Post[],
+}
 
-  // Handle loading state
-  if (isLoading) {
-    return <Loader loading={isLoading} />
-  }
-
-  // Handle error state
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
+export const Hero = ({posts} : Props) => {
   // Now data is guaranteed to exist
-  const post = data?.at(0) || {};
+  const post = posts.at(0) as Post
 
   return (
     <div className="bg-gray-100 lg:flex-row dark:bg-gray-900 flex-col  overflow-hidden p-20 w-full flex items-center justify-center px-4">

@@ -14,14 +14,14 @@ export const NavMenu = ({ user, showMenu, logout }: Props) => {
 		<>
 			{showMenu && (
 				<ul className="fixed top-15 m-5 shadow-2xl rounded-lg right-0 max-w-3xs space-y-1 w-full text-start items-start bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 border z-50 p-4">
-					<h6 className="text-lg text-center m-4 flex items-center gap-2">
-						{user?.name}
+					<h6 className="text-lg capitalize text-center m-4 text-white flex items-center gap-2">
 						{user?.role === "admin" && (
 							<Check
 								className="p-0.5 border border-custom-200 text-custom-400 rounded-full"
 								size={15}
 							/>
 						)}
+						{user?.username}
 					</h6>
 					<li className="px-4 py-2 flex gap-2 items-center hover:bg-custom-200/30">
 						<LayoutDashboard size={20} />

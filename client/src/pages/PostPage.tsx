@@ -21,7 +21,7 @@ export const PostPage = () => {
 
 
 	if (isLoading) {
-		return <Loader loading={isLoading} />;
+		return <Loader loading={isLoading} message="Fetching Posts" />;
 	}
 
 	if (isError) {

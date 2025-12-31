@@ -3,16 +3,17 @@ import React from "react";
 import { RecentPostTable } from "../../../components/Dashboard/RecentPostTable";
 import { useUserPost } from "@/services/dashboard";
 import { Link } from "react-router";
+import { Loader } from "@/components/Loader";
 
 export const ManagePost = () => {
 	const { data, isLoading } = useUserPost();
 
 	if (isLoading) {
-		return <p>loading .....</p>;
+		return <Loader loading={isLoading} message="fetching user posts" />
 	}
 
 	return (
-		<div className=" min-h-screen space-y-6 p-4">
+		<div className="min-h-screen dark:bg-gray-900 space-y-6 p-4">
 			<div className="flex justify-between items-center p-4">
 				<h1 className="text-2xl text-start font-bold">Manage Post</h1>
 				<Link to="/create-post">

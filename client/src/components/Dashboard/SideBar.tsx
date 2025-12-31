@@ -67,7 +67,7 @@ export const SideBar = () => {
 		<>
 			<Sidebar
 				collapsible="offcanvas"
-				className="space-y-4 shadow-2xl px-5 "
+				className="space-y-4 shadow-2xl px-5 dark:bg-gray-900"
 			>
 				<SidebarHeader className="flex relative justify-center bg-white dark:bg-gray-900 items-center pt-8 pb-7">
 					<Link to="/">
@@ -82,11 +82,13 @@ export const SideBar = () => {
 						<img
 							src={user?.profile}
 							className="size-12 rounded-full"
-							alt={user?.profilepic}
+							alt={user?.profile}
 						/>
 						<div className="">
-							<h4>{user?.name}</h4>
-							<h6 className="text-sm text-gray-400/90 font-light">{user?.email}</h6>
+							<h4>{user?.name || ""}</h4>
+							<h6 className="text-sm text-gray-400/90 font-light">
+								{user?.email}
+							</h6>
 						</div>
 					</div>
 					<NavMenu

@@ -22,7 +22,7 @@ body {
     box-sizing: border-box;
     display: block;
     height: 100%;
-    background-color: var(--color-white);
+    background-color: var(--color-gray-900);
 }
 
 @theme inline {

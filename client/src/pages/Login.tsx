@@ -68,7 +68,7 @@ export const Login = () => {
     return (
         <div className="w-full block p-10 h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             <div className="w-full max-w-5xl m-auto h-150">
-                <Card className="p-0 overflow-hidden h-full">
+                <Card className="p-0 overflow-hidden dark:bg-gray-900 h-full">
                     <CardContent className="flex lg:flex-row flex-col justify-between p-0 h-full">
                         <form
                             onSubmit={handleSubmit(onSubmit)}

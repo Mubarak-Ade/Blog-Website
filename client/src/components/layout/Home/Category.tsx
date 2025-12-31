@@ -10,18 +10,16 @@ import {
 	Laptop,
 } from "lucide-react";
 
-export const Category = () => {
-	const { data, isLoading, error } = useFetchPosts();
+interface Props {
+  posts: Post[],
+}
 
-	if (isLoading) {
-		return <p>Loading ....</p>;
-	}
+export const Category = ({posts} : Props) => {
 
-	// const tagList: string[] = data.t(",").map((t, i) => t.);
 
 	const tags = Array.from(
 		new Set(
-			data?.flatMap((post: Partial<Post>) =>
+			posts?.flatMap((post: Partial<Post>) =>
 				post.tags
 			)
 		)
@@ -56,7 +54,7 @@ export const Category = () => {
 				<ul className="flex flex-wrap justify-center mt-10">
 					{categoryList.map((category) => (
 						<li
-							key={category}
+							key={category.name}
 							className="flex items-center size-30 p-4 border border-gray-900 dark:border-gray-100 shadow-2xl rounded-md m-2 justify-center text-center flex-col"
 						>
 							<span>{category.icon}</span>

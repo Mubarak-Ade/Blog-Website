@@ -1,5 +1,3 @@
-import React from "react";
-import { Input } from "@/components/ui/input";
 import {
 	Select,
 	SelectContent,
@@ -9,17 +7,20 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { useFilterStore } from "@/store/useFilterStore";
-import { Post } from "@/model/post";
 import { useFetchPosts } from "@/hooks/queries/usePost";
-import { Button } from "../ui/button";
+import { Post } from "@/model/post";
+import { useFilterStore } from "@/store/useFilterStore";
 import { Search } from "lucide-react";
+import React from "react";
+import { Loader } from "../Loader";
+import { Button } from "../ui/button";
 import {
 	InputGroup,
 	InputGroupButton,
 	InputGroupInput,
 } from "../ui/input-group";
-import { Loader } from "../Loader";
+
+type Author = { id: string; name: string };
 
 export const PostsHeader = () => {
 	const {
@@ -35,28 +36,38 @@ export const PostsHeader = () => {
 	} = useFilterStore();
 	const { data, isLoading } = useFetchPosts();
 	if (isLoading) {
-		return <Loader loading={isLoading} />;
+		return (
+			<Loader
+				loading={isLoading}
+				message="loading post"
+			/>
+		);
 	}
-	const categories = [...new Set(data.map((post: Post) => post.category))];
+	const categories = [
+		...new Set(data.map((post: Post) => post.category)),
+	] as string[];
 	const authors = [
 		...new Map(
 			data.map((post: Post) => [
-			post.author?._id,
-			{
-				id: post.author?._id,
-				name: `${post.author?.firstname} ${post.author?.lastname}`,
-			}])
+				post.author?._id,
+				{
+					id: post.author?._id,
+					name: `${post.author?.firstname} ${post.author?.lastname}`,
+				},
+			])
 		).values(),
-	];
+	] as Author[];
 
 	console.log(authors);
 
-	const handleSearchSubmit = (e) => {
+	const handleSearchSubmit = (e: any) => {
 		e.preventDefault();
 		setFilter("search", searchDraft);
 	};
 
-	const handleAuthorSearchSubmit = (e) => {
+	const handleAuthorSearchSubmit = (
+		e: React.ChangeEvent<HTMLInputElement>
+	) => {
 		e.preventDefault();
 		setFilter("author", author);
 	};

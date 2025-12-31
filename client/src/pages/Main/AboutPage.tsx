@@ -1,5 +1,4 @@
-import React from "react";
-import Image from "../../assets/image.png";
+import Image from "@/assets/image.png";
 import { AtSign, Code, Facebook, Instagram, Link2 } from "lucide-react";
 
 export const AboutPage = () => {

@@ -7,13 +7,11 @@ import { Post } from "@/model/post";
 import { BlogCard } from "@/components/BlogCard";
 import { Loader } from "@/components/Loader";
 
-export const Features = () => {
-    const { data, isLoading, error } = useFetchPosts();
+interface Props {
+  posts: Post[],
+}
 
-    if(isLoading) {
-        return <Loader loading={isLoading} />;
-    }
-    
+export const Features = ({posts} : Props) => {
     return (
         <div className="p-4  border-t">
             <div className="flex justify-between items-center p-5">
@@ -21,7 +19,7 @@ export const Features = () => {
                 <Link to="posts" className="flex gap-2">View more <ArrowRight /></Link>
             </div>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 p-10">
-                {data?.slice(0, 6)?.map((post : Post) => {
+                {posts?.slice(0, 6)?.map((post : Post) => {
                     return (
                         <BlogCard
                             key={post._id}

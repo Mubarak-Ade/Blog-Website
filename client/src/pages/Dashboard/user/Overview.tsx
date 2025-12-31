@@ -3,32 +3,28 @@ import { PostCard } from "../../../components/Dashboard/PostCard";
 import { RecentPostTable } from "../../../components/Dashboard/RecentPostTable";
 import { useUserPost } from "../../../services/dashboard";
 import { useGetUserComment } from "@/hooks/queries/usePost";
+import { Loader } from "@/components/Loader";
 
 export const Overview = () => {
 	// const {userPosts, loading, error} = useDashboardStore()
 	const post = useUserPost();
 	const comment = useGetUserComment();
 
-	if (post.isLoading) {
-		return <p>getting post count .....</p>;
+	if (post.isLoading || comment.isLoading) {
+		return <Loader loading={post.isLoading || comment.isLoading} message="getting post and comment count" />
 	}
-
-	if (comment.isLoading) {
-		return <p>getting comment count .....</p>;
-	}
-
 	return (
-		<div className="p-6 min-h-screen">
+		<div className="p-6 dark:bg-gray-900 min-h-screen">
 			<div className="flex gap-4">
 				<PostCard
 					title="Post"
 					amount={post?.data?.length}
-					icon={BookCopyIcon}
+					icon={<BookCopyIcon size={24}/>}
 				/>
 				<PostCard
 					title="comment"
 					amount={comment?.data?.length}
-					icon={MessageCircleMore}
+					icon={<MessageCircleMore size={24} />}
 				/>
 			</div>
 			<div className="mt-5  p-5">

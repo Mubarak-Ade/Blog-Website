@@ -1,19 +1,13 @@
-import { RiArrowDownSLine, RiArrowDropDownLine } from "react-icons/ri";
-import Profile from "../../assets/profile.png";
-import { BellIcon, MenuIcon, Moon, Search, Sun, User } from "lucide-react";
-import { useDashboardStore } from "../../store/dashboardStore";
-import { useEffect, useState } from "react";
-import { formatImage } from "@/util/imageFormat";
 import { useFetchUser } from "@/services/dashboard";
-import { Button } from "../ui/button";
-import { NavAvatar } from "../Navbar/NavAvatar";
-import { useThemeStore } from "@/store/ThemeStore";
-import { NavMenu } from "../Navbar/NavMenu";
 import { useAuthProvider } from "@/store/store";
-import { Link, useNavigate } from "react-router";
+import { useThemeStore } from "@/store/ThemeStore";
+import { BellIcon, MenuIcon, Moon, Sun } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { Button } from "../ui/button";
 import { useSidebar } from "../ui/sidebar";
 
-export const AppBar = ({toggleSidebar}) => {
+export const AppBar = () => {
 	const { data, isLoading } = useFetchUser();
     const {isMobile, openMobile, setOpenMobile} = useSidebar()
     const navigate = useNavigate()
