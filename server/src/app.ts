@@ -14,6 +14,7 @@ import path from "path"
 import morgan from "morgan";
 import { isAdmin } from "./middleware/isAdmin.js";
 import auth from "./middleware/authHandler.js";
+import { uptime } from "process";
 
 const app = express();
 
@@ -46,5 +47,13 @@ app.use((error: unknown, req: Request, res: Response, next: NextFunction) =>
     }
     res.status(statusCode).json({ error: errorMessage })
 })
+
+app.get("/health", (_req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: uptime(),
+    timestamp: Date.now(),
+  });
+});
 
 export default app
