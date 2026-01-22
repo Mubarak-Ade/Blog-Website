@@ -1,6 +1,6 @@
 import { ProfileForm } from "@/components/Profile/ProfileForm";
 import { Overview } from "@/pages/Dashboard/user/Overview";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { HashRouter, Navigate, Route, Routes } from "react-router";
 import "./App.css";
 import BlogSite from "./components/blog_home_auth";
 import { CreatePost } from "./pages/CreatePost";
@@ -44,7 +44,7 @@ function App() {
 	}, [theme])
 	
 	return (
-		<>
+		<HashRouter>
 			{/* <Toaster /> */}
 			<Routes>
 				<Route element={<MainLayout />}>
@@ -148,7 +148,7 @@ function App() {
 					/>
 				</Route>
 			</Routes>
-		</>
+		</HashRouter>
 	);
 }
 
