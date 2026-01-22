@@ -44,7 +44,7 @@ function App() {
 	}, [theme])
 	
 	return (
-		<BrowserRouter>
+		<>
 			{/* <Toaster /> */}
 			<Routes>
 				<Route element={<MainLayout />}>
@@ -148,7 +148,7 @@ function App() {
 					/>
 				</Route>
 			</Routes>
-		</BrowserRouter>
+		</>
 	);
 }
 
