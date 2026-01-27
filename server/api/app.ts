@@ -56,6 +56,10 @@ app.use((error: unknown, req: Request, res: Response, next: NextFunction) =>
     res.status(statusCode).json({ error: errorMessage })
 })
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Blog API");
+})
+
 app.get("/health", (_req, res) => {
   res.status(200).json({
     status: "ok",
