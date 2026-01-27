@@ -1,19 +1,10 @@
 import app from "./app.js";
-import env from "./env.js";
-import {connectDB} from "./db/connect_db.js"
+import { connectDB } from "./db/connect_db.js";
 
-const PORT = env.PORT || 3000;
+// Connect to database on cold start
+connectDB().catch(error => {
+    console.error("Failed to connect to database:", error);
+});
 
-const startServer = async () => {
-    try {
-        await connectDB();
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
-    } catch (error) {
-        console.error("Failed to start server:", error);
-        process.exit(1);
-    }
-}
-
-startServer();
+// Export the app for Vercel (no app.listen!)
+export default app;

@@ -1,13 +1,25 @@
-import mongoose from "mongoose";
-import env from "../env.js";
+import mongoose from 'mongoose';
+import env from '../env.js';
+
+let isConnected = false;
 
 export const connectDB = async () => {
+    if (isConnected) {
+        console.log('Using existing database connection');
+        return;
+    }
+
     try {
-        await mongoose.connect(env.MONGO_PROD_URI);
-        console.log("MongoDb Connected");
+        const db = await mongoose.connect(env.MONGO_PROD_URI as string, {
+            // Use connection pooling for serverless
+            maxPoolSize: 10,
+            serverSelectionTimeoutMS: 5000,
+        });
+
+        isConnected = db.connections[0].readyState === 1;
+        console.log('Database connected successfully');
     } catch (error) {
-        console.error(error);
-        process.exit(1);
+        console.error('Database connection failed:', error);
+        throw error;
     }
 };
-

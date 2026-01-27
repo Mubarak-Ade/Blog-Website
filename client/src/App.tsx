@@ -44,7 +44,6 @@ function App() {
 	}, [theme])
 	
 	return (
-			{/* <Toaster /> */}
 		<HashRouter>
 			<Routes>
 				<Route element={<MainLayout />}>
