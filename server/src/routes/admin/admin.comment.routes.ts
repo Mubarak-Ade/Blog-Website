@@ -1,6 +1,6 @@
 import express from 'express';
 import * as commentController from "../../controllers/admin/admin.comment.controller.js"
-import authHandler from '../../middleware/authHandler';
+import authHandler from '../../middleware/authHandler.js';
 
 const router = express.Router()
 
